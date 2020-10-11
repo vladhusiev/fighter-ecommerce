@@ -1,0 +1,31 @@
+.header_menu {
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.05);
+}
+
+.header_menu_list {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.header_menu_item {
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.header_menu_item.active,
+.header_menu_item:hover {
+    background: #231e1e;
+}
+
+.header_menu_item.active .header_menu_link,
+.header_menu_item:hover .header_menu_link {
+    color: #fff;
+}
+
+.header_menu_link {
+    color: #353535;
+    font-weight: bold;
+    font-size: 16px;
+}

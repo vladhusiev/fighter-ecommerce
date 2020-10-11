@@ -1,0 +1,39 @@
+.header_upper {
+    background: #fafafa;
+}
+
+.header_upper_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.header_list {
+    display: flex;
+}
+
+.header_item {
+    margin-right: 33px;
+}
+
+.header_log {
+    display: flex;
+    align-items: center;
+}
+
+.header_log i {
+    margin-right: 10px;
+    color: #a69b9b;
+}
+
+.header_log span {
+    margin: 0 5px;
+}
+
+.header_upper_link,
+.header_log_link {
+    color: #a69b9b;
+    font-size: 12px;
+    line-height: 16px;
+}

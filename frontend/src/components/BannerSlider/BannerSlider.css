@@ -1,0 +1,59 @@
+.banner .slide {
+    height: 520px;
+    overflow: hidden;
+}
+
+.banner {
+    margin-top: 25px;
+}
+
+.banner .slider {
+    position: relative;
+}
+
+.banner .slider_nav {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+}
+
+.banner .slider_nav .slider_num {
+    font-size: 24px;
+    font-weight: bold;
+    color: #644a4a;
+    line-height: 33px;
+    margin-right: 35px;
+}
+
+.banner .slider_nav .slider_btns button {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #382626;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.banner .slider_nav .slider_btns button:hover i {
+    color: #fff;
+}
+
+.banner .slider_nav .slider_btns {
+    display: flex;
+}
+
+.banner .slider_nav .slider_btns .prev {
+    margin-right: 15px;
+}
+
+.banner .slider_nav .slider_btns i {
+    color: #6f5858;
+}
+
+.awssld__wrapper {
+    height: 450px !important;
+}
