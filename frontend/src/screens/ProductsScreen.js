@@ -123,7 +123,7 @@ function ProductsScreen(props) {
       bodyFormData.append('image', file[i]);
     }
     axios
-      .post('/api/uploads', bodyFormData)
+      .post('/api/uploads/s3', bodyFormData)
       .then((response) => {
         Object.values(response.data).map((item, index) => {
           imagesArr.push(Object.values(item)[6]);
