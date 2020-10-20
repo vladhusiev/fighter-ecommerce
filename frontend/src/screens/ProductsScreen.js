@@ -123,11 +123,7 @@ function ProductsScreen(props) {
     }
     console.log(bodyFormData)
     axios
-      .post('/api/uploads', bodyFormData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
+      .post('/api/uploads', bodyFormData)
       .then((response) => {
         Object.values(response.data).map((item, index) => {
           imagesArr.push(Object.values(item)[6]);
@@ -153,7 +149,7 @@ function ProductsScreen(props) {
       </div>
       {modalVisible && (
         <div className="form">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} enctype="multipart/form-data">
             <ul className="form-container">
               <li>
                 <h2>Create Product</h2>
