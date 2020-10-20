@@ -121,14 +121,13 @@ function ProductsScreen(props) {
     for (let i = 0; i < file.length; i++) {
       bodyFormData.append('image', file[i]);
     }
-    console.log(bodyFormData)
     axios
       .post('/api/uploads', bodyFormData)
       .then((response) => {
         Object.values(response.data).map((item, index) => {
           imagesArr.push(Object.values(item)[6]);
         })
-        setImage(imagesArr.toString());
+        setImage(imagesArr);
         setUploading(false);
       })
       .catch((err) => {
