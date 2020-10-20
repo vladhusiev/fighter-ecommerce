@@ -131,6 +131,7 @@ function ProductsScreen(props) {
         Object.values(response.data).map((item, index) => {
           imagesArr.push(Object.values(item)[6]);
         })
+        console.log(imagesArr)
         setImage(imagesArr);
         setUploading(false);
       })
