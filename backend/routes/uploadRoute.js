@@ -33,7 +33,7 @@ const storageS3 = multerS3({
   bucket: 'figher-shop-bucket',
   acl: 'public-read',
   contentType: multerS3.AUTO_CONTENT_TYPE,
-  key(req, file, cd) {
+  key(req, file, cb) {
     cb(null, file.originalname);
   },
 });
