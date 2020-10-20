@@ -119,6 +119,7 @@ function ProductsScreen(props) {
   const uploadFileHandler = (e) => {
     const file = e.target.files
     for (let i = 0; i < file.length; i++) {
+      console.log(file[i])
       bodyFormData.append('image', file[i]);
     }
     axios
