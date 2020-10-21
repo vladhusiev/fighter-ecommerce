@@ -119,13 +119,11 @@ function ProductsScreen(props) {
   const uploadFileHandler = (e) => {
     const file = e.target.files
     for (let i = 0; i < file.length; i++) {
-      console.log(file[i])
       bodyFormData.append('image', file[i]);
     }
     axios
       .post('/api/uploads/s3', bodyFormData)
       .then((response) => {
-        console.log(response.data)
         Object.values(response.data).map((item, index) => {
           imagesArr.push(Object.values(item)[13]);
         })

@@ -11,9 +11,9 @@ const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Slider = () => {
     return (
-        <section class="banner" id="banner">
-            <div class="container">
-                <div class="slider">
+        <section className="banner" id="banner">
+            <div className="container">
+                <div className="slider">
                     <AutoplaySlider
                         bullets={false}
                         play={true}

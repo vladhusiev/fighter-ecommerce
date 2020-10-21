@@ -1,11 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
-import { useSelector } from "react-redux";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProductsScreen from "./screens/ProductsScreen";
 import ShippingScreen from "./screens/ShippingScreen";
@@ -15,37 +14,15 @@ import OrderScreen from "./screens/OrderScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import OrdersScreen from "./screens/OrdersScreen";
 import Header from "./components/Header/Header";
-import Slider from "./components/BannerSlider/BannerSlider";
-import TopSales from "./components/TopSales/TopSales";
+import DeliveryScreen from "./components/DeliveryPage/DeliveryScreen";
+import ContactsScreen from "./components/ContactsPage/ContactsScreen";
+import CatalogScreen from './components/CatalogPage/CatalogScreen';
 
 function App() {
-    const userSignin = useSelector(state => state.userSignin);
-    const { userInfo } = userSignin;
     return (
         <BrowserRouter>
-            <Header />
-            {/* <header className="header">
-                    <div className="header-links">
-                        <a href="cart.html">Cart</a>
-                        {userInfo ? (
-                            <Link to="/profile">{userInfo.name}</Link>
-                        ) : (
-                            <Link to="/signin">Sign In</Link>
-                        )}
-                        {userInfo && userInfo.isAdmin && (
-                            <div className="dropdown">
-                                <a href="#">Admin</a>
-                                <ul className="dropdown-content">
-                                    <li>
-                                        <Link to="/orders">Orders</Link>
-                                        <Link to="/products">Products</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                </header> */}
             <main className="main">
+                <Header />
                 <div className="content">
                     <Route path="/orders" component={OrdersScreen} />
                     <Route path="/profile" component={ProfileScreen} />
@@ -58,11 +35,12 @@ function App() {
                     <Route path="/register" component={RegisterScreen} />
                     <Route path="/product/:id" component={ProductScreen} />
                     <Route path="/cart/:id?" component={CartScreen} />
-                    <Route path="/category/:id" component={HomeScreen} />
-                    <Route path="/" exact={true} component={HomeScreen} />
+                    <Route path="/category/:id" component={CatalogScreen} />
+                    <Route path="/catalog" exact={true} component={CatalogScreen} />
+                    <Route path="/delivery" component={DeliveryScreen} />
+                    <Route path="/contacts" component={ContactsScreen} />
+                    <Route path="/home" component={HomeScreen} />
                 </div>
-                <Slider />
-                <TopSales />
             </main>
         </BrowserRouter>
     );

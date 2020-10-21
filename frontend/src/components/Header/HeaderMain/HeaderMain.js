@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./HeaderMain.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { listProducts } from '../../../actions/productActions';
 
-export default function HeaderMain() {
+function HeaderMain(props) {
+    
     return (
         <div className="header_main">
             <div className="container">
                 <div className="header_main_wrap">
-                    <a className="header_logo" href="/">
-                        <img src="/images/fighter.svg" alt="logo" />
-                    </a>
+                    <Link to="/">
+                        <span className="header_logo" href="/">
+                            <img src="/images/fighter.svg" alt="logo" />
+                        </span>
+                    </Link>
                     <div className="header_search">
                         <input
                             type="text"
@@ -40,3 +46,5 @@ export default function HeaderMain() {
         </div>
     );
 }
+
+export default HeaderMain;
