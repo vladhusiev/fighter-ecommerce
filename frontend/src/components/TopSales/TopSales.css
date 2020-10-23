@@ -72,9 +72,10 @@
 
 .goods_item {
     background: #fbf8f8;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
     width: 350px;
     height: 480px;
+    outline: none;
 }
 
 .goods_item_upper {
@@ -85,8 +86,8 @@
 
 .goods_item_discount {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 24px;
+    left: 24px;
     width: 32px;
     height: 32px;
     background: #fafafa;
@@ -140,4 +141,70 @@
     margin: 50px auto 0;
     text-align: center;
     width: 190px;
+}
+
+.goods_btn a {
+    color: #fff;
+}
+
+.rec-pagination {
+    display: none !important;
+}
+
+.rec-arrow {
+    background: #ffffff !important;
+    border-radius: 6px !important;
+    border: none !important;
+    outline: none !important;
+    display: block !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    line-height: 40px !important;
+    height: 40px !important;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05) !important;
+    cursor: pointer !important;
+    transition: all 0.5s ease-in-out !important;
+    font-size: 14px !important;
+}
+
+.rec-arrow-right {
+    position: absolute;
+    top: 0;
+    right: 13px;
+}
+
+.rec-arrow-left {
+    position: absolute;
+    top: 0;
+    right: 75px;
+}
+
+.rec-arrow:hover {
+    box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.05) !important;
+    color: #000 !important;
+}
+
+.chowzb:hover:enabled,
+.chowzb:focus:enabled {
+    color: #000 !important;
+}
+
+.hCVuYx:disabled {
+    opacity: 0.7 !important;
+}
+
+.hCVuYx:disabled:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.mUZZN {
+    margin: 0 !important;
+}
+
+.iamfxf {
+    padding: 10px 0 !important;
+}
+
+.rec-carousel-item {
+    outline: none;
 }

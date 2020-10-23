@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Carousel from 'react-elastic-carousel';
+import { useDispatch, useSelector } from "react-redux";
 import "./TopSales.css";
+import { topProductList } from '../../actions/productActions';
+import { Link } from "react-router-dom";
 
-export default function TopSales() {
+export default function TopSales(props) {
+    const productList = useSelector((state) => state.topProductList);
+    const { products, loading, error } = productList;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(topProductList())
+        return () => {
+        
+        }
+    }, [])
     return (
         <section className="goods" id="goods">
             <div className="container">
@@ -10,74 +23,47 @@ export default function TopSales() {
                         <span className="subtitle">топ продаж</span>
                         Купили на этой неделе
                     </h2>
-                    <div className="navs">
-                        <button className="prev">
-                            <i className="fas fa-arrow-left"></i>
-                        </button>
-                        <button className="next">
-                            <i className="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
                 </div>
                 <div className="goods_slider">
-                    <div className="goods_item">
-                        <div className="goods_item_upper">
-                            <img src="/images/1.jpg" alt="good" />
-                            <div className="goods_item_discount">
-                                <i className="fas fa-percent"></i>
+                    <Carousel itemsToShow={3}>
+                    {
+                        products.map((product) => (
+                            <div className="goods_item">
+                                <div className="goods_item_upper">
+                                    <img src={ product.image[0] } alt={ product.name } />
+                                </div>
+                                <div className="goods_item_discount">
+                                    {product.oldPrice && (
+                                        <i className="fas fa-percent"></i>
+                                    )}
+                                </div>
+                                <div className="goods_item_btm">
+                                    <span className="goods_item_name">{ product.name }</span>
+                                    <p className="goods_item_desc">
+                                        { product.description }
+                                    </p>
+                                    
+                                        { product.oldPrice ? (
+                                            <span className="goods_item_price">
+                                                <span className="new_price">{ product.price } грн</span>
+                                                <span className="old_price">{ product.oldPrice } грн</span>
+                                            </span>
+                                        ) : (
+                                            <span className="goods_item_price">
+                                                <span className="new_price">{ product.price } грн</span>
+                                            </span>
+                                        ) }
+                                </div>
                             </div>
-                        </div>
-                        <div className="goods_item_btm">
-                            <span className="goods_item_name">MANTO</span>
-                            <p className="goods_item_desc">
-                                Футболка T-shirt 20 black
-                            </p>
-                            <span className="goods_item_price">
-                                <span className="new_price">1560 грн</span>
-                                <span className="old_price">1900 грн</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="goods_item">
-                        <div className="goods_item_upper">
-                            <img src="/images/2.jpg" alt="good" />
-                            <div className="goods_item_discount">
-                                <i className="fas fa-percent"></i>
-                            </div>
-                        </div>
-                        <div className="goods_item_btm">
-                            <span className="goods_item_name">MANTO</span>
-                            <p className="goods_item_desc">
-                                Футболка T-shirt 20 black
-                            </p>
-                            <span className="goods_item_price">
-                                <span className="new_price">1560 грн</span>
-                                <span className="old_price">1900 грн</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="goods_item">
-                        <div className="goods_item_upper">
-                            <img src="/images/3.jpg" alt="good" />
-                            <div className="goods_item_discount">
-                                <i className="fas fa-percent"></i>
-                            </div>
-                        </div>
-                        <div className="goods_item_btm">
-                            <span className="goods_item_name">MANTO</span>
-                            <p className="goods_item_desc">
-                                Футболка T-shirt 20 black
-                            </p>
-                            <span className="goods_item_price">
-                                <span className="new_price">1560 грн</span>
-                                <span className="old_price">1900 грн</span>
-                            </span>
-                        </div>
-                    </div>
+                        ))
+                    }
+                    </Carousel>
                 </div>
-                <a className="main_btn goods_btn" href="">
-                    Смотреть все товары
-                </a>
+                <span className="main_btn goods_btn">
+                    <Link to="/catalog">
+                            Смотреть все товары
+                    </Link>
+                </span>
             </div>
         </section>
     );

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import './Header.css'
+import './Header.css';
+import {ClickAwayListener} from '@material-ui/core';
 
 function Header() {
     const userSignin = useSelector(state => state.userSignin);
@@ -10,8 +11,6 @@ function Header() {
     const [shoes, setShoes] = useState(false);
     const [equipment, setEquipment] = useState(false);
     const [accessories, setAccessories] = useState(false);
-
-    
 
 
     return (
@@ -81,137 +80,142 @@ function Header() {
                             </span>
                         </Link>
                         <ul className="header_menu_list">
-                            <li className="header_menu_item">
-                                <span className={clothes ? 'header_menu_link active' : 'header_menu_link'} onClick={() => setClothes(!clothes)}>
+                            <li className={clothes ? 'header_menu_item active' : 'header_menu_item'} onClick={() => setClothes(!clothes)}>
+                                <span className="header_menu_link">
                                     Одежда
                                 </span>
                                 {clothes && (
-                                    <div className="hidden_category">
-                                    <ul className="header_submenu">
-                                        <li className="header_submenu_title">Повседневная одежда</li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/tshirt">Футболки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/polo">Футболки поло</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/longsleeve">Лонгсливы</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/hoodie">Толстовки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/jacket">Куртки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shirt">Рубашки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/jeans">Джинсы</a>
-                                        </li>
-                                    </ul>
-                                    <ul className="header_submenu">
-                                        <li className="header_submenu_title">Спортивная одежда</li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/hoodie-sport">Толстовки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/rashguards">Рашгарды для единоборств</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/undershirt">Майки и безрукавки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/tshirt-sport">Тренировочные футболки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/pants-sport">Спортивные штаны</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/suit-sport">Спортивные костюмы</a>
-                                        </li>
-                                    </ul>
-                                    <ul className="header_submenu">
-                                        <li className="header_submenu_title">Шорты</li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts-mma">Шорты для ММА</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts-tai">Тайские шорты</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts-boxing">Боксерские шорты</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts-sport">Спортивные шорты</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts">Повседневные шорты</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts-beach">Пляжные шорты</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/shorts-beach">Пляжные шорты</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/underclothes">Нижнее белье</a>
-                                        </li>
-                                    </ul>
-                                    <ul className="header_submenu">
-                                        <li className="header_submenu_title">Головные уборы</li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/cap">Шапки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/cap-baseball">Бейсболки</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/balaclava">Балаклавы</a>
-                                        </li>
-                                        <li className="header_submenu_item">
-                                            <a href="/category/bandana">Банданы</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                )}
-                            </li>
-                            <li className="header_menu_item">
-                               <span className={shoes ? 'header_menu_link active' : 'header_menu_link'} onClick={() => setShoes(!shoes)}>
-                                    Обувь
-                                </span>
-                                {shoes && (
-                                    <div className="hidden_category row">
+                                    <ClickAwayListener onClickAway={() => setClothes(!clothes)}>
+                                        <div className="hidden_category">
                                         <ul className="header_submenu">
-                                            <li className="header_submenu_title">Обувь</li>
+                                            <li className="header_submenu_title">Повседневная одежда</li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/shoes-boxing">Боксерки</a>
+                                                <a href="/category/tshirt">Футболки</a>
                                             </li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/shoes-wrestling">Борцовки</a>
+                                                <a href="/category/polo">Футболки поло</a>
                                             </li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/sneakers">Кроссовки и кеды</a>
+                                                <a href="/category/longsleeve">Лонгсливы</a>
                                             </li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/flip-flops">Вьетнамки</a>
+                                                <a href="/category/hoodie">Толстовки</a>
                                             </li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/slippers">Шлепанцы</a>
+                                                <a href="/category/jacket">Куртки</a>
                                             </li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/socks">Носки</a>
+                                                <a href="/category/shirt">Рубашки</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/jeans">Джинсы</a>
+                                            </li>
+                                        </ul>
+                                        <ul className="header_submenu">
+                                            <li className="header_submenu_title">Спортивная одежда</li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/hoodie-sport">Толстовки</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/rashguards">Рашгарды для единоборств</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/undershirt">Майки и безрукавки</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/tshirt-sport">Тренировочные футболки</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/pants-sport">Спортивные штаны</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/suit-sport">Спортивные костюмы</a>
+                                            </li>
+                                        </ul>
+                                        <ul className="header_submenu">
+                                            <li className="header_submenu_title">Шорты</li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts-mma">Шорты для ММА</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts-tai">Тайские шорты</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts-boxing">Боксерские шорты</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts-sport">Спортивные шорты</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts">Повседневные шорты</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts-beach">Пляжные шорты</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/shorts-beach">Пляжные шорты</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/underclothes">Нижнее белье</a>
+                                            </li>
+                                        </ul>
+                                        <ul className="header_submenu">
+                                            <li className="header_submenu_title">Головные уборы</li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/cap">Шапки</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/cap-baseball">Бейсболки</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/balaclava">Балаклавы</a>
+                                            </li>
+                                            <li className="header_submenu_item">
+                                                <a href="/category/bandana">Банданы</a>
                                             </li>
                                         </ul>
                                     </div>
+                                </ClickAwayListener>
                                 )}
                             </li>
-                            <li className="header_menu_item">
-                                <span className={equipment ? 'header_menu_link active' : 'header_menu_link'} onClick={() => setEquipment(!equipment)}>
+                            <li className="header_menu_item" onClick={() => setShoes(!shoes)}>
+                               <span className={shoes ? 'header_menu_link active' : 'header_menu_link'} >
+                                    Обувь
+                                </span>
+                                {shoes && (
+                                    <ClickAwayListener onClickAway={() => setShoes(!shoes)}>
+                                        <div className="hidden_category row">
+                                            <ul className="header_submenu">
+                                                <li className="header_submenu_title">Обувь</li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/shoes-boxing">Боксерки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/shoes-wrestling">Борцовки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/sneakers">Кроссовки и кеды</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/flip-flops">Вьетнамки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/slippers">Шлепанцы</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/socks">Носки</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </ClickAwayListener>
+                                )}
+                            </li>
+                            <li className={equipment ? 'header_menu_item active' : 'header_menu_item'} onClick={() => setEquipment(!equipment)}>
+                                <span className="header_menu_link">
                                     Экипировка
                                 </span>
                                 {equipment && (
+                                    <ClickAwayListener onClickAway={() => setEquipment(!equipment)}>
                                     <div className="hidden_category">
                                         <ul className="header_submenu">
                                             <li className="header_submenu_title">Перчатки для единоборств</li>
@@ -289,51 +293,54 @@ function Header() {
                                             </li>
                                         </ul>
                                     </div>
+                                    </ClickAwayListener>
                                 )}
                             </li>
-                            <li className="header_menu_item">
-                            <span className={accessories ? 'header_menu_link active' : 'header_menu_link'} onClick={() => setAccessories(!accessories)}>
+                            <li className={accessories ? 'header_menu_item active' : 'header_menu_item'} onClick={() => setAccessories(!accessories)}>
+                                <span className="header_menu_link">
                                     Аксессуары
                                 </span>
                                 {accessories && (
-                                    <div className="hidden_category">
-                                        <ul className="header_submenu">
-                                            <li className="header_submenu_title">Для тренировок</li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/bag">Сумки</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/backpack">Рюкзаки</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/bag-bag">Сумки мешки</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/towel">Полотенца</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/botle">Бутылки и шейкеры</a>
-                                            </li>
-                                        </ul>
-                                        <ul className="header_submenu">
-                                            <li className="header_submenu_title">Повседневные</li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/gloves">Перчатки</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/clock">Часы</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/glasses">Очки</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/belt">Ремни и пояса</a>
-                                            </li>
-                                            <li className="header_submenu_item">
-                                                <a href="/category/pocket">Бумажники и кошельки</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <ClickAwayListener onClickAway={() => setAccessories(!accessories)}>
+                                        <div className="hidden_category">
+                                            <ul className="header_submenu">
+                                                <li className="header_submenu_title">Для тренировок</li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/bag">Сумки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/backpack">Рюкзаки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/bag-bag">Сумки мешки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/towel">Полотенца</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/botle">Бутылки и шейкеры</a>
+                                                </li>
+                                            </ul>
+                                            <ul className="header_submenu">
+                                                <li className="header_submenu_title">Повседневные</li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/gloves">Перчатки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/clock">Часы</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/glasses">Очки</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/belt">Ремни и пояса</a>
+                                                </li>
+                                                <li className="header_submenu_item">
+                                                    <a href="/category/pocket">Бумажники и кошельки</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </ClickAwayListener>
                                 )}
                             </li>
                             <li className="header_menu_item">

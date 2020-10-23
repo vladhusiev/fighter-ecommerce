@@ -15,6 +15,9 @@ import {
   PRODUCT_REVIEW_SAVE_REQUEST,
   PRODUCT_REVIEW_SAVE_FAIL,
   PRODUCT_REVIEW_SAVE_RESET,
+  TOP_PRODUCT_LIST_REQUEST,
+  TOP_PRODUCT_LIST_SUCCESS,
+  TOP_PRODUCT_LIST_FAIL,
 } from '../constants/productConstants';
 
 function productListReducer(state = { products: [] }, action) {
@@ -83,10 +86,24 @@ function productReviewSaveReducer(state = {}, action) {
   }
 }
 
+function topProductListReducer(state = { products: [] }, action) {
+  switch (action.type) {
+    case TOP_PRODUCT_LIST_REQUEST:
+      return { loading: true, products: [] };
+    case TOP_PRODUCT_LIST_SUCCESS:
+      return { loading: false, products: action.payload }
+    case TOP_PRODUCT_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default: 
+      return state;
+  }
+}
+
 export {
   productListReducer,
   productDetailsReducer,
   productSaveReducer,
   productDeleteReducer,
   productReviewSaveReducer,
+  topProductListReducer
 };

@@ -14,6 +14,9 @@ import {
   PRODUCT_REVIEW_SAVE_REQUEST,
   PRODUCT_REVIEW_SAVE_FAIL,
   PRODUCT_REVIEW_SAVE_SUCCESS,
+  TOP_PRODUCT_LIST_SUCCESS,
+  TOP_PRODUCT_LIST_FAIL,
+  TOP_PRODUCT_LIST_REQUEST,
 } from '../constants/productConstants';
 import Axios from 'axios';
 
@@ -37,6 +40,16 @@ const listProducts = (
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
   }
 };
+
+const topProductList = () => async (dispatch) => {
+  try {
+    dispatch({ type: TOP_PRODUCT_LIST_REQUEST });
+    const { data } = await Axios.get('api/products');
+    dispatch({ type: TOP_PRODUCT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: TOP_PRODUCT_LIST_FAIL, payload: error.message });
+  }
+}
 
 const saveProduct = (product) => async (dispatch, getState) => {
   try {
@@ -125,4 +138,5 @@ export {
   saveProduct,
   deleteProduct,
   saveProductReview,
+  topProductList
 };
