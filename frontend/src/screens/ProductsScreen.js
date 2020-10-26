@@ -20,6 +20,7 @@ function ProductsScreen(props) {
   const [description, setDescription] = useState('');
   const [vendorCode, setVendorCode] = useState('');
   const [clothesType, setClothesType] = useState('');
+  const [pantsType, setPantsType] = useState('');
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
   const { loading, products, error } = productList;
@@ -36,6 +37,8 @@ function ProductsScreen(props) {
         size43: 0,
         size44: 0,
         size45: 0,
+        size46: 0,
+        size47: 0,
       },
       clothes: {
         XS: 0,
@@ -50,6 +53,15 @@ function ProductsScreen(props) {
         oz14: 0,
         oz16: 0,
         oz18: 0
+      },
+      pants: {
+        size30: 0,
+        size31: 0,
+        size32: 0,
+        size33: 0,
+        size34: 0,
+        size35: 0,
+        size36: 0,
       }
     }
   );
@@ -191,16 +203,20 @@ function ProductsScreen(props) {
               <li>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center">
-                    <label className="mb-0 mr-1" htmlFor="clothes">Clothes</label>
+                    <label className="mb-0 mr-1" htmlFor="clothes">Одежда</label>
                     <input type="radio" name="typeClothes" value="clothes" id="clothes" onChange={(e) => setClothesType(e.target.value)} />
                   </div>
                   <div className="d-flex align-items-center">
-                    <label className="mb-0 mr-1" htmlFor="shoes">Shoes</label>
+                    <label className="mb-0 mr-1" htmlFor="shoes">Обувь</label>
                     <input type="radio" name="typeClothes" value="shoes" id="shoes" onChange={(e) => setClothesType(e.target.value)} />
                   </div>
                   <div className="d-flex align-items-center">
-                    <label className="mb-0 mr-1" htmlFor="gloves">Gloves</label>
+                    <label className="mb-0 mr-1" htmlFor="gloves">Перчатки</label>
                     <input type="radio" name="typeClothes" value="gloves" id="gloves" onChange={(e) => setClothesType(e.target.value)} />
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <label className="mb-0 mr-1" htmlFor="pants">Штаны</label>
+                    <input type="radio" name="typeClothes" value="pants" id="pants" onChange={(e) => setClothesType(e.target.value)} />
                   </div>
                 </div>
               </li>
@@ -465,10 +481,10 @@ function ProductsScreen(props) {
                             </span>
                             <span>
                               <input  type="text" 
-                                      value={Object.values(sizesArr.clothes)[0]} 
+                                      value={Object.values(sizesArr.gloves)[0]} 
                                       onChange={(e) => setSizesArr({...sizesArr,
-                                         clothes: {
-                                            ...sizesArr.clothes,
+                                         gloves: {
+                                            ...sizesArr.gloves,
                                             oz12: parseInt(e.target.value)
                                           }}
                                       )} />
@@ -480,10 +496,10 @@ function ProductsScreen(props) {
                             </span>
                             <span>
                               <input  type="text" 
-                                      value={Object.values(sizesArr.clothes)[1]} 
+                                      value={Object.values(sizesArr.gloves)[1]} 
                                       onChange={(e) => setSizesArr({...sizesArr,
-                                         clothes: {
-                                            ...sizesArr.clothes,
+                                         gloves: {
+                                            ...sizesArr.gloves,
                                             oz14: parseInt(e.target.value)
                                           }}
                                       )} />
@@ -495,10 +511,10 @@ function ProductsScreen(props) {
                             </span>
                             <span>
                               <input  type="text" 
-                                      value={Object.values(sizesArr.clothes)[2]} 
+                                      value={Object.values(sizesArr.gloves)[2]} 
                                       onChange={(e) => setSizesArr({...sizesArr,
-                                         clothes: {
-                                            ...sizesArr.clothes,
+                                         gloves: {
+                                            ...sizesArr.gloves,
                                             oz16: parseInt(e.target.value)
                                           }}
                                       )} />
@@ -510,20 +526,129 @@ function ProductsScreen(props) {
                             </span>
                             <span>
                               <input  type="text" 
-                                      value={Object.values(sizesArr.clothes)[3]} 
+                                      value={Object.values(sizesArr.gloves)[3]} 
                                       onChange={(e) => setSizesArr({...sizesArr,
-                                         clothes: {
-                                            ...sizesArr.clothes,
+                                         gloves: {
+                                            ...sizesArr.gloves,
                                             oz18: parseInt(e.target.value)
                                           }}
                                       )} />
                             </span>
                           </li>
                         </ul>
+                      ) 
+                    } else if (clothesType === "pants") {
+                      return (
+                        <ul>
+                        <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              30
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[0]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size30: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              31
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[1]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size31: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              32
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[2]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size32: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              33
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[3]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size33: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              34
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[4]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size34: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              35
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[5]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size35: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              36
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.pants)[6]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         pants: {
+                                            ...sizesArr.pants,
+                                            size36: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                        </ul>
                       )
-                    }
                   }
-                  )()}
+                })()}
               </li>
               <li>
                 <label htmlFor="image">Image</label>

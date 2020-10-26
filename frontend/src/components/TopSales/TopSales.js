@@ -15,6 +15,7 @@ export default function TopSales(props) {
         
         }
     }, [])
+    console.log(products)
     return (
         <section className="goods" id="goods">
             <div className="container">
@@ -28,22 +29,22 @@ export default function TopSales(props) {
                     <Carousel itemsToShow={3}>
                     {
                         products.map((product) => (
-                            <div className="goods_item">
+                            <div className="goods_item" key={product._id}>
                                 <div className="goods_item_upper">
                                     <img src={ product.image[0] } alt={ product.name } />
                                 </div>
-                                <div className="goods_item_discount">
-                                    {product.oldPrice && (
+                                { product.oldPrice !== 0 && (
+                                    <div className="goods_item_discount">
                                         <i className="fas fa-percent"></i>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                                 <div className="goods_item_btm">
                                     <span className="goods_item_name">{ product.name }</span>
                                     <p className="goods_item_desc">
                                         { product.description }
                                     </p>
                                     
-                                        { product.oldPrice ? (
+                                        { product.oldPrice > 0 ? (
                                             <span className="goods_item_price">
                                                 <span className="new_price">{ product.price } грн</span>
                                                 <span className="old_price">{ product.oldPrice } грн</span>

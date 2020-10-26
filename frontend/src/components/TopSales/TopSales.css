@@ -74,20 +74,22 @@
     background: #fbf8f8;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
     width: 350px;
-    height: 480px;
+    height: 475px;
     outline: none;
+    position: relative;
 }
 
 .goods_item_upper {
     position: relative;
-    height: 380px;
+    height: 350px;
     overflow: hidden;
+    background: #fff;
 }
 
 .goods_item_discount {
     position: absolute;
-    top: 24px;
-    left: 24px;
+    top: 15px;
+    left: 15px;
     width: 32px;
     height: 32px;
     background: #fafafa;
@@ -102,7 +104,7 @@
     padding: 15px 25px;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 125px;
 }
 
 .goods_item_name {
@@ -114,6 +116,7 @@
 .goods_item_desc {
     color: #755959;
     line-height: 19px;
+    overflow: hidden;
 }
 
 .goods_item_price {
@@ -207,4 +210,8 @@
 
 .rec-carousel-item {
     outline: none;
+}
+
+.hvCMSX {
+    padding: 10px !important;
 }

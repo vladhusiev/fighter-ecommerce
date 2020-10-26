@@ -153,9 +153,6 @@ function Header() {
                                                 <a href="/category/shorts-beach">Пляжные шорты</a>
                                             </li>
                                             <li className="header_submenu_item">
-                                                <a href="/category/shorts-beach">Пляжные шорты</a>
-                                            </li>
-                                            <li className="header_submenu_item">
                                                 <a href="/category/underclothes">Нижнее белье</a>
                                             </li>
                                         </ul>
