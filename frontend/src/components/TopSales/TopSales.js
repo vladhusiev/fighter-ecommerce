@@ -12,10 +12,8 @@ export default function TopSales(props) {
     useEffect(() => {
         dispatch(topProductList())
         return () => {
-        
         }
     }, [])
-    console.log(products)
     return (
         <section className="goods" id="goods">
             <div className="container">

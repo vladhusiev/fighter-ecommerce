@@ -7,7 +7,8 @@ import {
   productSaveReducer,
   productDeleteReducer,
   productReviewSaveReducer,
-  topProductListReducer
+  topProductListReducer,
+  discountProductListReducer
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
@@ -47,7 +48,8 @@ const reducer = combineReducers({
   myOrderList: myOrderListReducer,
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,
-  topProductList: topProductListReducer
+  topProductList: topProductListReducer,
+  discountProductList: discountProductListReducer
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

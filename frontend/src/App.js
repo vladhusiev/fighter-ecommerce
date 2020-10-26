@@ -17,12 +17,12 @@ import Header from "./components/Header/Header";
 import DeliveryScreen from "./components/DeliveryPage/DeliveryScreen";
 import ContactsScreen from "./components/ContactsPage/ContactsScreen";
 import CatalogScreen from './components/CatalogPage/CatalogScreen';
-
+import Footer from './components/Footer/Footer';
 function App() {
     return (
         <BrowserRouter>
+            <Header />
             <main className="main">
-                <Header />
                 <div className="content">
                     <Route path="/orders" component={OrdersScreen} />
                     <Route path="/profile" component={ProfileScreen} />
@@ -42,6 +42,7 @@ function App() {
                     <Route path="/home" component={HomeScreen} />
                 </div>
             </main>
+            <Footer />
         </BrowserRouter>
     );
 }

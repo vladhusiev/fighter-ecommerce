@@ -17,6 +17,9 @@ import {
   TOP_PRODUCT_LIST_SUCCESS,
   TOP_PRODUCT_LIST_FAIL,
   TOP_PRODUCT_LIST_REQUEST,
+  DISCOUNT_PRODUCT_LIST_REQUEST,
+  DISCOUNT_PRODUCT_LIST_SUCCESS,
+  DISCOUNT_PRODUCT_LIST_FAIL,
 } from '../constants/productConstants';
 import Axios from 'axios';
 
@@ -45,9 +48,34 @@ const topProductList = () => async (dispatch) => {
   try {
     dispatch({ type: TOP_PRODUCT_LIST_REQUEST });
     const { data } = await Axios.get('api/products');
-    dispatch({ type: TOP_PRODUCT_LIST_SUCCESS, payload: data });
+    const dataSorted = [];
+    data.map((product) => {
+      if (product.countInStock < 6) {
+        dataSorted.push(product);
+      }
+    })
+    dispatch({ type: TOP_PRODUCT_LIST_SUCCESS, payload: dataSorted });
   } catch (error) {
     dispatch({ type: TOP_PRODUCT_LIST_FAIL, payload: error.message });
+  }
+}
+
+const discountProductList = () => async (dispatch) => {
+  try {
+    dispatch({ type: DISCOUNT_PRODUCT_LIST_REQUEST });
+    const { data } = await Axios.get('api/products');
+    const dataSorted = [];
+    data.map((item) => {
+      if (item.oldPrice > 0) {
+        if (dataSorted.length > 3) {
+          return;
+        }
+        dataSorted.push(item);
+      }
+    })
+    dispatch({ type: DISCOUNT_PRODUCT_LIST_SUCCESS, payload: dataSorted });
+  } catch (error) {
+    dispatch({ type: DISCOUNT_PRODUCT_LIST_FAIL, payload: error.message });
   }
 }
 
@@ -138,5 +166,6 @@ export {
   saveProduct,
   deleteProduct,
   saveProductReview,
-  topProductList
+  topProductList,
+  discountProductList
 };

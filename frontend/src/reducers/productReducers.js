@@ -18,6 +18,9 @@ import {
   TOP_PRODUCT_LIST_REQUEST,
   TOP_PRODUCT_LIST_SUCCESS,
   TOP_PRODUCT_LIST_FAIL,
+  DISCOUNT_PRODUCT_LIST_REQUEST,
+  DISCOUNT_PRODUCT_LIST_SUCCESS,
+  DISCOUNT_PRODUCT_LIST_FAIL,
 } from '../constants/productConstants';
 
 function productListReducer(state = { products: [] }, action) {
@@ -99,11 +102,25 @@ function topProductListReducer(state = { products: [] }, action) {
   }
 }
 
+function discountProductListReducer(state = { products: [] }, action) {
+  switch (action.type) {
+    case DISCOUNT_PRODUCT_LIST_REQUEST:
+      return { loading: true, products: [] };
+    case DISCOUNT_PRODUCT_LIST_SUCCESS:
+      return { loading: false, products: action.payload }
+    case DISCOUNT_PRODUCT_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default: 
+      return state;
+  }
+}
+
 export {
   productListReducer,
   productDetailsReducer,
   productSaveReducer,
   productDeleteReducer,
   productReviewSaveReducer,
-  topProductListReducer
+  topProductListReducer,
+  discountProductListReducer
 };

@@ -71,6 +71,8 @@ img {
 }
 #root {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .brand a {
