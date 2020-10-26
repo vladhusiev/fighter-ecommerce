@@ -470,6 +470,36 @@ function ProductsScreen(props) {
                                       )} />
                             </span>
                           </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              46
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.shoes)[10]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         shoes: {
+                                            ...sizesArr.shoes,
+                                            size46: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
+                          <li className="d-flex flex-row justify-content-between align-items-center">
+                            <span>
+                              47
+                            </span>
+                            <span>
+                              <input  type="text" 
+                                      value={Object.values(sizesArr.shoes)[11]} 
+                                      onChange={(e) => setSizesArr({...sizesArr,
+                                         shoes: {
+                                            ...sizesArr.shoes,
+                                            size47: parseInt(e.target.value)
+                                          }}
+                                      )} />
+                            </span>
+                          </li>
                       </ul>
                       )
                     } else if (clothesType === "gloves") {

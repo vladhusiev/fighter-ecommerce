@@ -39,7 +39,9 @@ export default function TopSales(props) {
                                     </div>
                                 )}
                                 <div className="goods_item_btm">
-                                    <span className="goods_item_name">{ product.name }</span>
+                                    <Link to={'/product/' + product._id}>
+                                        <span className="goods_item_name">{ product.name }</span>
+                                    </Link>
                                     <p className="goods_item_desc">
                                         { product.description }
                                     </p>

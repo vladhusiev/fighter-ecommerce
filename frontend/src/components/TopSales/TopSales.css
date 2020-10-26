@@ -74,7 +74,7 @@
     background: #fbf8f8;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
     width: 350px;
-    height: 475px;
+    height: 500px;
     outline: none;
     position: relative;
 }
@@ -104,7 +104,7 @@
     padding: 15px 25px;
     display: flex;
     flex-direction: column;
-    height: 125px;
+    height: 150px;
 }
 
 .goods_item_name {
@@ -115,8 +115,9 @@
 
 .goods_item_desc {
     color: #755959;
-    line-height: 19px;
+    line-height: 20px;
     overflow: hidden;
+    font-size: 12px;
 }
 
 .goods_item_price {
