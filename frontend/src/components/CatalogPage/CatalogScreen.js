@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { listProducts } from '../../actions/productActions';
+import './CatalogScreen.css'
 
 export default function CatalogScreen(props) {
     const [searchKeyword, setSearchKeyword] = useState('');
@@ -29,52 +30,88 @@ export default function CatalogScreen(props) {
     };
     return (
         <>
-            {category && <h2>{category}</h2>}
-                <ul className="filter">
-                    <li>
-                        <form onSubmit={submitHandler}>
-                        <input
-                            name="searchKeyword"
-                            onChange={(e) => setSearchKeyword(e.target.value)}
-                        />
-                        <button type="submit">Search</button>
-                        </form>
-                    </li>
-                    <li>
-                        Sort By{' '}
-                        <select name="sortOrder" onChange={sortHandler}>
-                        <option value="">Newest</option>
-                        <option value="lowest">Lowest</option>
-                        <option value="highest">Highest</option>
-                        </select>
-                    </li>
-                </ul>
-                {loading ? (
-                <div>Loading...</div>
-                ) : error ? (
-                <div>{error}</div>
-                ) : (
-                <ul className="products">
-                    {products.map((product) => (
-                    <li key={product._id}>
-                        <div className="product">
-                        <Link to={'/product/' + product._id}>
-                            <img
-                            className="product-image"
-                            src={product.image[0]}
-                            alt="product"
-                            />
-                        </Link>
-                        <div className="product-name">
-                            <Link to={'/product/' + product._id}>{product.name}</Link>
+            <section className="catalog">
+                <div className="container">
+                    <div className="catalog_top">
+                        <h2 className="catalog_title">
+                            Каталог
+                            <span className="catalog_title_sub">
+                                Каталог
+                            </span>
+                        </h2>
+                        <ul className="catalog_tools">
+                            <li className="catalog_search">
+                                <form onSubmit={submitHandler}>
+                                    <input
+                                        name="searchKeyword"
+                                        onChange={(e) => setSearchKeyword(e.target.value)}
+                                        placeholder="Введите название или бренд товара"
+                                    />
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </form>
+                            </li>
+                            <li className="catalog_sort">
+                                Сортировать по: {' '}
+                                <select name="sortOrder" onChange={sortHandler}>
+                                <option value="">Самые новые</option>
+                                <option value="lowest">Самые дорогие</option>
+                                <option value="highest">Самые дешевые</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="catalog_body">
+                        <div className="catalog_filter">
                         </div>
-                        <div className="product-brand">{product.brand}</div>
-                        <div className="product-price">${product.price}</div>
+                        <div className="catalog_list">
+                            {loading ? (
+                            <div>Loading...</div>
+                            ) : error ? (
+                            <div>{error}</div>
+                            ) : (
+                            <div className="catalog_products">
+                                {products.map((product) => (
+                                <Link to={'/product/' + product._id}>
+                                    <div className="product" key={product._id}>
+                                        <div className="product_top">
+                                                <img
+                                                className="product_image"
+                                                src={product.image[0]}
+                                                alt="product"
+                                                />
+                                            
+                                        </div>
+                                        <div className="product_btm">
+                                            <div className="product_name">
+                                                <Link to={'/product/' + product._id}>{product.name}</Link>
+                                            </div>
+                                            <div className="product_brand">{product.brand}</div>
+                                                { product.oldPrice > 0 ? (
+                                                <div className="product_price">
+                                                    <div class="product_price_new">
+                                                        {product.price} грн
+                                                    </div>
+                                                    <div class="product_price_old">
+                                                        {product.oldPrice} грн
+                                                    </div>
+                                                </div>
+                                                ) : (
+                                                    <div className="product_price">
+                                                        <div class="product_price_new">
+                                                            {product.price} грн
+                                                        </div>
+                                                    </div>
+                                                )}
+                                        </div>
+                                    </div>
+                                </Link>
+                                ))}
+                            </div>
+                            )}
                         </div>
-                    </li>
-                    ))}
-                </ul>
-            )}
+                        </div>
+                    </div>
+            </section>
         </>
     )
 }
