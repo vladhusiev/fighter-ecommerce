@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { listProducts } from '../../actions/productActions';
 import './CatalogScreen.css'
+import Sidebar from '../Sidebar/Sidebar'
+import Pagination from './Pagination'
 
 export default function CatalogScreen(props) {
     const [searchKeyword, setSearchKeyword] = useState('');
@@ -10,7 +12,8 @@ export default function CatalogScreen(props) {
     const category = props.match.params.id ? props.match.params.id : '';
     const productList = useSelector((state) => state.productList);
     const { products, loading, error } = productList;
-    console.log(products);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(6);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProducts(category));
@@ -28,6 +31,12 @@ export default function CatalogScreen(props) {
         setSortOrder(e.target.value);
         dispatch(listProducts(category, searchKeyword, sortOrder));
     };
+
+    const indexOfLastPost = currentPage * postsPerPage
+    const indexOfFirstPost = indexOfLastPost - postsPerPage
+    const currentProducts = products.slice(indexOfFirstPost, indexOfLastPost)
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
     return (
         <>
             <section className="catalog">
@@ -62,50 +71,54 @@ export default function CatalogScreen(props) {
                     </div>
                     <div className="catalog_body">
                         <div className="catalog_filter">
+                            <Sidebar />
                         </div>
-                        <div className="catalog_list">
+                        <div className="catalog_right">
                             {loading ? (
                             <div>Loading...</div>
                             ) : error ? (
                             <div>{error}</div>
                             ) : (
                             <div className="catalog_products">
-                                {products.map((product) => (
-                                <Link to={'/product/' + product._id}>
-                                    <div className="product" key={product._id}>
-                                        <div className="product_top">
-                                                <img
-                                                className="product_image"
-                                                src={product.image[0]}
-                                                alt="product"
-                                                />
-                                            
-                                        </div>
-                                        <div className="product_btm">
-                                            <div className="product_name">
-                                                <Link to={'/product/' + product._id}>{product.name}</Link>
+                                <div className="catalog_list">
+                                    {currentProducts.map((product) => (
+                                    <Link to={'/product/' + product._id}>
+                                        <div className="product" key={product._id}>
+                                            <div className="product_top">
+                                                    <img
+                                                    className="product_image"
+                                                    src={product.image[0]}
+                                                    alt="product"
+                                                    />
+                                                
                                             </div>
-                                            <div className="product_brand">{product.brand}</div>
-                                                { product.oldPrice > 0 ? (
-                                                <div className="product_price">
-                                                    <div class="product_price_new">
-                                                        {product.price} грн
-                                                    </div>
-                                                    <div class="product_price_old">
-                                                        {product.oldPrice} грн
-                                                    </div>
+                                            <div className="product_btm">
+                                                <div className="product_name">
+                                                    <Link to={'/product/' + product._id}>{product.name}</Link>
                                                 </div>
-                                                ) : (
+                                                <div className="product_brand">{product.brand}</div>
+                                                    { product.oldPrice > 0 ? (
                                                     <div className="product_price">
                                                         <div class="product_price_new">
                                                             {product.price} грн
                                                         </div>
+                                                        <div class="product_price_old">
+                                                            {product.oldPrice} грн
+                                                        </div>
                                                     </div>
-                                                )}
+                                                    ) : (
+                                                        <div className="product_price">
+                                                            <div class="product_price_new">
+                                                                {product.price} грн
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                            </div>
                                         </div>
-                                    </div>
-                                </Link>
-                                ))}
+                                    </Link>
+                                    ))}
+                                </div>
+                                <Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} currentPage={currentPage} />
                             </div>
                             )}
                         </div>

@@ -82,14 +82,23 @@
     margin-left: 5px;
 }
 
-.catalog_products {
+.catalog_filter {
+    min-width: 300px;
+    margin-right: 50px;
+}
+
+.catalog_list {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.catalog .product:not(:nth-child(4n)) {
-    margin-right: 50px;
+.catalog_list .product {
+    margin-right: 40px;
+}
+
+.catalog_list a:nth-child(3n) .product {
+    margin-right: 0;
 }
 
 .catalog .product {
@@ -100,7 +109,8 @@
 }
 
 .catalog_body {
-    margin-top: 25px;
+    margin-top: 50px;
+    display: flex;
 }
 
 .product_top {
