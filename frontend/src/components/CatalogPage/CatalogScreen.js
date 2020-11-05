@@ -5,6 +5,10 @@ import { listProducts } from '../../actions/productActions';
 import './CatalogScreen.css'
 import Sidebar from '../Sidebar/Sidebar'
 import Pagination from './Pagination'
+import Loading from '../Loading/Loading'
+import SkeletonScreen from './SkeletonScreen'
+import { LazyLoadImage } from '@tjoskar/react-lazyload-img'
+import defaultImage from '../../images/default.jpg'
 
 export default function CatalogScreen(props) {
     const [searchKeyword, setSearchKeyword] = useState('');
@@ -40,6 +44,7 @@ export default function CatalogScreen(props) {
     return (
         <>
             <section className="catalog">
+                
                 <div className="container">
                     <div className="catalog_top">
                         <h2 className="catalog_title">
@@ -75,9 +80,7 @@ export default function CatalogScreen(props) {
                         </div>
                         <div className="catalog_right">
                             {loading ? (
-                            <div>Loading...</div>
-                            ) : error ? (
-                            <div>{error}</div>
+                                <SkeletonScreen />
                             ) : (
                             <div className="catalog_products">
                                 <div className="catalog_list">
@@ -85,12 +88,12 @@ export default function CatalogScreen(props) {
                                     <Link to={'/product/' + product._id}>
                                         <div className="product" key={product._id}>
                                             <div className="product_top">
-                                                    <img
+                                                    {/* <img
                                                     className="product_image"
                                                     src={product.image[0]}
                                                     alt="product"
-                                                    />
-                                                
+                                                    /> */}
+                                                    <LazyLoadImage height="180px" defaultImage={defaultImage} image={product.image[0]} />
                                             </div>
                                             <div className="product_btm">
                                                 <div className="product_name">

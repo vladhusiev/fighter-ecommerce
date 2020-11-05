@@ -108,6 +108,10 @@
     border: 1px solid #fbf8f8;
 }
 
+.catalog_products {
+    position: relative;
+}
+
 .catalog_body {
     margin-top: 50px;
     display: flex;
