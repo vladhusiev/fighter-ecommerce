@@ -97,7 +97,7 @@
     margin-right: 40px;
 }
 
-.catalog_list a:nth-child(3n) .product {
+.catalog_list .product:nth-child(3n) {
     margin-right: 0;
 }
 

@@ -5,9 +5,9 @@ import "./TopSales.css";
 import { topProductList } from '../../actions/productActions';
 import { Link } from "react-router-dom";
 
-export default function TopSales(props) {
+export default function TopSales() {
     const productList = useSelector((state) => state.topProductList);
-    const { products, loading, error } = productList;
+    const { products } = productList;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(topProductList())

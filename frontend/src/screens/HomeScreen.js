@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Slider from "../components/BannerSlider/BannerSlider";
 import DiscountsScreen from '../components/Discounts/DiscountsScreen';
 import TopSales from "../components/TopSales/TopSales";

@@ -20,6 +20,9 @@ import {
   DISCOUNT_PRODUCT_LIST_REQUEST,
   DISCOUNT_PRODUCT_LIST_SUCCESS,
   DISCOUNT_PRODUCT_LIST_FAIL,
+  FIND_TOP_LESS_PRICES_REQUEST,
+  FIND_TOP_LESS_PRICES_SUCCESS,
+  FIND_TOP_LESS_PRICES_FAIL,
 } from '../constants/productConstants';
 import Axios from 'axios';
 
@@ -76,6 +79,23 @@ const discountProductList = () => async (dispatch) => {
     dispatch({ type: DISCOUNT_PRODUCT_LIST_SUCCESS, payload: dataSorted });
   } catch (error) {
     dispatch({ type: DISCOUNT_PRODUCT_LIST_FAIL, payload: error.message });
+  }
+}
+
+const findTopLessPrices = () => async (dispatch) => {
+  try {
+    dispatch({ type: FIND_TOP_LESS_PRICES_REQUEST });
+    const { data } = await Axios.get('api/products');
+    const prices = []
+    function sortByPrice(arr) {
+      arr.sort((a, b) => a.price > b.price ? 1 : -1);
+    }
+    sortByPrice(data);
+    prices.push(data[0]);
+    prices.push(data[data.length - 1]);
+    dispatch({ type: FIND_TOP_LESS_PRICES_SUCCESS, payload: prices });
+  } catch (error) {
+    dispatch({ type: FIND_TOP_LESS_PRICES_FAIL, payload: error.message });
   }
 }
 
@@ -155,7 +175,6 @@ const saveProductReview = (productId, review) => async (dispatch, getState) => {
     );
     dispatch({ type: PRODUCT_REVIEW_SAVE_SUCCESS, payload: data });
   } catch (error) {
-    // report error
     dispatch({ type: PRODUCT_REVIEW_SAVE_FAIL, payload: error.message });
   }
 };
@@ -167,5 +186,6 @@ export {
   deleteProduct,
   saveProductReview,
   topProductList,
-  discountProductList
+  discountProductList,
+  findTopLessPrices
 };

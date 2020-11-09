@@ -21,6 +21,9 @@ import {
   DISCOUNT_PRODUCT_LIST_REQUEST,
   DISCOUNT_PRODUCT_LIST_SUCCESS,
   DISCOUNT_PRODUCT_LIST_FAIL,
+  FIND_TOP_LESS_PRICES_SUCCESS,
+  FIND_TOP_LESS_PRICES_REQUEST,
+  FIND_TOP_LESS_PRICES_FAIL,
 } from '../constants/productConstants';
 
 function productListReducer(state = { products: [] }, action) {
@@ -115,6 +118,19 @@ function discountProductListReducer(state = { products: [] }, action) {
   }
 }
 
+function findTopLessPricesReducer(state = { products: { prices: [] } }, action) {
+  switch (action.type) {
+    case FIND_TOP_LESS_PRICES_REQUEST:
+      return { loading: true };
+    case FIND_TOP_LESS_PRICES_SUCCESS:
+      return { loading: false, prices: action.payload }
+    case FIND_TOP_LESS_PRICES_FAIL:
+      return { loading: false, error: action.payload }
+    default: 
+      return state;
+  }
+}
+
 export {
   productListReducer,
   productDetailsReducer,
@@ -122,5 +138,6 @@ export {
   productDeleteReducer,
   productReviewSaveReducer,
   topProductListReducer,
-  discountProductListReducer
+  discountProductListReducer,
+  findTopLessPricesReducer
 };

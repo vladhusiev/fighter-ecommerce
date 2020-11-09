@@ -61,7 +61,7 @@ export default function CatalogScreen(props) {
                                         onChange={(e) => setSearchKeyword(e.target.value)}
                                         placeholder="Введите название или бренд товара"
                                     />
-                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                    <button type="submit"><i className="fas fa-search"></i></button>
                                 </form>
                             </li>
                             <li className="catalog_sort">
@@ -85,14 +85,8 @@ export default function CatalogScreen(props) {
                                     <div className="catalog_products">
                                         <div className="catalog_list">
                                             {currentProducts.map((product) => (
-                                                <Link to={'/product/' + product._id}>
                                                     <div className="product" key={product._id}>
                                                         <div className="product_top">
-                                                            {/* <img
-                                                    className="product_image"
-                                                    src={product.image[0]}
-                                                    alt="product"
-                                                    /> */}
                                                             <LazyLoadImage height="180px" defaultImage={defaultImage} image={product.image[0]} />
                                                         </div>
                                                         <div className="product_btm">
@@ -102,23 +96,22 @@ export default function CatalogScreen(props) {
                                                             <div className="product_brand">{product.brand}</div>
                                                             {product.oldPrice > 0 ? (
                                                                 <div className="product_price">
-                                                                    <div class="product_price_new">
+                                                                    <div className="product_price_new">
                                                                         {product.price} грн
-                                                        </div>
-                                                                    <div class="product_price_old">
+                                                                    </div>
+                                                                    <div className="product_price_old">
                                                                         {product.oldPrice} грн
-                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             ) : (
                                                                     <div className="product_price">
-                                                                        <div class="product_price_new">
+                                                                        <div className="product_price_new">
                                                                             {product.price} грн
-                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 )}
                                                         </div>
                                                     </div>
-                                                </Link>
                                             ))}
                                         </div>
                                         <Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} currentPage={currentPage} />
