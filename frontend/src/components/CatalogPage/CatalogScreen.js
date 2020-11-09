@@ -23,7 +23,7 @@ export default function CatalogScreen(props) {
         dispatch(listProducts(category));
 
         return () => {
-        //
+            //
         };
     }, [category]);
 
@@ -44,7 +44,7 @@ export default function CatalogScreen(props) {
     return (
         <>
             <section className="catalog">
-                
+
                 <div className="container">
                     <div className="catalog_top">
                         <h2 className="catalog_title">
@@ -67,9 +67,9 @@ export default function CatalogScreen(props) {
                             <li className="catalog_sort">
                                 Сортировать по: {' '}
                                 <select name="sortOrder" onChange={sortHandler}>
-                                <option value="">Самые новые</option>
-                                <option value="lowest">Самые дорогие</option>
-                                <option value="highest">Самые дешевые</option>
+                                    <option value="">Самые новые</option>
+                                    <option value="lowest">Самые дорогие</option>
+                                    <option value="highest">Самые дешевые</option>
                                 </select>
                             </li>
                         </ul>
@@ -82,51 +82,51 @@ export default function CatalogScreen(props) {
                             {loading ? (
                                 <SkeletonScreen />
                             ) : (
-                            <div className="catalog_products">
-                                <div className="catalog_list">
-                                    {currentProducts.map((product) => (
-                                    <Link to={'/product/' + product._id}>
-                                        <div className="product" key={product._id}>
-                                            <div className="product_top">
-                                                    {/* <img
+                                    <div className="catalog_products">
+                                        <div className="catalog_list">
+                                            {currentProducts.map((product) => (
+                                                <Link to={'/product/' + product._id}>
+                                                    <div className="product" key={product._id}>
+                                                        <div className="product_top">
+                                                            {/* <img
                                                     className="product_image"
                                                     src={product.image[0]}
                                                     alt="product"
                                                     /> */}
-                                                    <LazyLoadImage height="180px" defaultImage={defaultImage} image={product.image[0]} />
-                                            </div>
-                                            <div className="product_btm">
-                                                <div className="product_name">
-                                                    <Link to={'/product/' + product._id}>{product.name}</Link>
-                                                </div>
-                                                <div className="product_brand">{product.brand}</div>
-                                                    { product.oldPrice > 0 ? (
-                                                    <div className="product_price">
-                                                        <div class="product_price_new">
-                                                            {product.price} грн
+                                                            <LazyLoadImage height="180px" defaultImage={defaultImage} image={product.image[0]} />
                                                         </div>
-                                                        <div class="product_price_old">
-                                                            {product.oldPrice} грн
+                                                        <div className="product_btm">
+                                                            <div className="product_name">
+                                                                <Link to={'/product/' + product._id}>{product.name}</Link>
+                                                            </div>
+                                                            <div className="product_brand">{product.brand}</div>
+                                                            {product.oldPrice > 0 ? (
+                                                                <div className="product_price">
+                                                                    <div class="product_price_new">
+                                                                        {product.price} грн
+                                                        </div>
+                                                                    <div class="product_price_old">
+                                                                        {product.oldPrice} грн
+                                                        </div>
+                                                                </div>
+                                                            ) : (
+                                                                    <div className="product_price">
+                                                                        <div class="product_price_new">
+                                                                            {product.price} грн
+                                                            </div>
+                                                                    </div>
+                                                                )}
                                                         </div>
                                                     </div>
-                                                    ) : (
-                                                        <div className="product_price">
-                                                            <div class="product_price_new">
-                                                                {product.price} грн
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                            </div>
+                                                </Link>
+                                            ))}
                                         </div>
-                                    </Link>
-                                    ))}
-                                </div>
-                                <Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} currentPage={currentPage} />
-                            </div>
-                            )}
-                        </div>
+                                        <Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} currentPage={currentPage} />
+                                    </div>
+                                )}
                         </div>
                     </div>
+                </div>
             </section>
         </>
     )
