@@ -1,0 +1,112 @@
+.sidebar-details {
+    display: block !important;
+}
+
+.MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded {
+    border-bottom: 1px solid #fbf8f8;
+}
+
+.MuiAccordionSummary-content {
+    font-size: 16px;
+}
+
+.MuiAccordionDetails-root {
+    padding: 20px 16px 50px !important;
+}
+
+.sidebar-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.sidebar-input-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-input-wrap input {
+    max-width: 70px;
+    margin-right: 5px;
+    border: 1px solid #fdebeb;
+    outline: none;
+    color: #000;
+    font-size: 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    padding: 5px 8px;
+}
+
+.sidebar-input-wrap input:hover {
+    background: #f8f8f8;
+}
+
+.sidebar-input-wrap span.pre {
+    margin-right: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.sidebar-input-wrap span,
+.rc-slider-mark-text {
+    color: #a69b9b !important;
+    font-size: 12px !important;
+}
+
+.rc-slider-dot {
+    display: none;
+}
+
+.rc-slider {
+    width: 90% !important;
+    margin: 0 auto;
+}
+
+.rc-slider-track {
+    background: #263238 !important;
+}
+
+.rc-slider-rail {
+    background: #e3e3e3 !important;
+    border-radius: 6px !important;
+}
+
+.rc-slider-handle {
+    border: solid 2px transparent !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin-top: -7px !important;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.rc-slider-handle:hover {
+    border-color: #263238 !important;
+}
+
+.rc-slider-mark {
+    top: 25px !important;
+}
+
+.rc-slider-mark .rc-slider-mark-text:last-child {
+    left: 93% !important;
+    width: 70px !important;
+}
+
+.MuiAccordion-rounded {
+    border-radius: 6px !important;
+}
+
+.MuiPaper-elevation1 {
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+.MuiPaper-root {
+    overflow: hidden;
+    margin-bottom: 10px;
+}

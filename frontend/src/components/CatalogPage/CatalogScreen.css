@@ -41,6 +41,12 @@
     width: 350px;
     color: #000;
     font-size: 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+.catalog_search form input:hover {
+    background: #f8f8f8;
 }
 
 .catalog_search form input:focus {
@@ -106,6 +112,13 @@
     height: 325px;
     margin-bottom: 50px;
     border: 1px solid #fbf8f8;
+    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.catalog .product:hover {
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
 }
 
 .catalog_products {

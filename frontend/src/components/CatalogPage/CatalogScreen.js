@@ -26,7 +26,6 @@ export default function CatalogScreen(props) {
             //
         };
     }, [category]);
-
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(listProducts(category, searchKeyword, sortOrder));

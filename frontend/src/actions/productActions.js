@@ -91,8 +91,8 @@ const findTopLessPrices = () => async (dispatch) => {
       arr.sort((a, b) => a.price > b.price ? 1 : -1);
     }
     sortByPrice(data);
-    prices.push(data[0]);
-    prices.push(data[data.length - 1]);
+    prices.push(data[0].price);
+    prices.push(data[data.length - 1].price);
     dispatch({ type: FIND_TOP_LESS_PRICES_SUCCESS, payload: prices });
   } catch (error) {
     dispatch({ type: FIND_TOP_LESS_PRICES_FAIL, payload: error.message });

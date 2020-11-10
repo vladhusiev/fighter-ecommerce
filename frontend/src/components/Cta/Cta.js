@@ -3,16 +3,16 @@ import './Cta.css'
 
 export default function Cta() {
     return (
-        <section class="cta" id="cta">
-            <div class="container">
-                <div class="cta_wrap">
-                    <div class="cta_content">
-                        <h2 class="cta_title">Узнайте первыми</h2>
-                        <p class="cta_desc">Подписывайтесь на рассылку и получите индивидуальное предложение</p>
+        <section className="cta" id="cta">
+            <div className="container">
+                <div className="cta_wrap">
+                    <div className="cta_content">
+                        <h2 className="cta_title">Узнайте первыми</h2>
+                        <p className="cta_desc">Подписывайтесь на рассылку и получите индивидуальное предложение</p>
                     </div>
-                    <div class="cta_input">
+                    <div className="cta_input">
                         <input type="text" placeholder="Введите свой email" />
-                        <button class="cta_input_btn"><i class="fas fa-arrow-right"></i></button>
+                        <button className="cta_input_btn"><i className="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
