@@ -23,6 +23,9 @@ import {
   FIND_TOP_LESS_PRICES_REQUEST,
   FIND_TOP_LESS_PRICES_SUCCESS,
   FIND_TOP_LESS_PRICES_FAIL,
+  ALL_PRODUCT_BRAND_LIST_REQUEST,
+  ALL_PRODUCT_BRAND_LIST_SUCCESS,
+  ALL_PRODUCT_BRAND_LIST_FAIL
 } from '../constants/productConstants';
 import Axios from 'axios';
 
@@ -46,6 +49,23 @@ const listProducts = (
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
   }
 };
+
+const allBrands = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_PRODUCT_BRAND_LIST_REQUEST });
+    const { data } = await Axios.get('api/products');
+    const brands = [];
+    data.map((item) => {
+      brands.push(item.brand)
+    })
+    const uniqueData = new Set(brands);
+    const uniqueBrands = [...uniqueData];
+    dispatch({ type: ALL_PRODUCT_BRAND_LIST_SUCCESS, payload: uniqueBrands });
+  }
+  catch (error) {
+    dispatch({ type: ALL_PRODUCT_BRAND_LIST_FAIL, payload: error.message });
+  }
+}
 
 const topProductList = () => async (dispatch) => {
   try {
@@ -187,5 +207,6 @@ export {
   saveProductReview,
   topProductList,
   discountProductList,
-  findTopLessPrices
+  findTopLessPrices,
+  allBrands
 };

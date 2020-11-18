@@ -10,8 +10,45 @@
     font-size: 16px;
 }
 
-.MuiAccordionDetails-root {
+.MuiAccordionDetails-root.sidebar-details--price {
     padding: 20px 16px 50px !important;
+}
+
+.MuiAccordionDetails-root {
+    display: block !important;
+}
+
+.MuiAccordionDetails-root.brand-field {
+    display: flex !important;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+.MuiAccordionDetails-root.brand-field .MuiFormControlLabel-root {
+    flex-basis: 50%;
+    max-width: 50%;
+}
+
+.MuiAccordionDetails-root.gender-field .MuiFormControlLabel-root {
+    flex-basis: 30%;
+    max-width: 30%;
+}
+
+.MuiFormControlLabel-root {
+    margin-right: 11px !important;
+    flex-basis: 20%;
+    max-width: 20%;
+}
+
+.MuiTypography-body1 {
+    font-family: "Nunito", sans-serif !important;
+    font-size: 12px !important;
+}
+
+.MuiFormGroup-row {
+    width: 100%;
 }
 
 .sidebar-inputs {

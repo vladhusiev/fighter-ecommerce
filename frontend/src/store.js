@@ -10,6 +10,7 @@ import {
   topProductListReducer,
   discountProductListReducer,
   findTopLessPricesReducer,
+  allProductBrandListReducer,
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
@@ -51,7 +52,8 @@ const reducer = combineReducers({
   orderDelete: orderDeleteReducer,
   topProductList: topProductListReducer,
   discountProductList: discountProductListReducer,
-  findTopLessPrices: findTopLessPricesReducer
+  findTopLessPrices: findTopLessPricesReducer,
+  allBrands: allProductBrandListReducer
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
