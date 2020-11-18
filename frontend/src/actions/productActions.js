@@ -60,7 +60,8 @@ const allBrands = () => async (dispatch) => {
     })
     const uniqueData = new Set(brands);
     const uniqueBrands = [...uniqueData];
-    dispatch({ type: ALL_PRODUCT_BRAND_LIST_SUCCESS, payload: uniqueBrands });
+
+    dispatch({ type: ALL_PRODUCT_BRAND_LIST_SUCCESS, payload: data });
   }
   catch (error) {
     dispatch({ type: ALL_PRODUCT_BRAND_LIST_FAIL, payload: error.message });

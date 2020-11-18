@@ -42,12 +42,12 @@ function productListReducer(state = { products: [] }, action) {
   }
 }
 
-function allProductBrandListReducer(state = { products: [] }, action) {
+function allProductBrandListReducer(state = { brands: [] }, action) {
   switch (action.type) {
     case ALL_PRODUCT_BRAND_LIST_REQUEST:
-      return { loading: true, products: [] };
+      return { loading: true, brands: [] };
     case ALL_PRODUCT_BRAND_LIST_SUCCESS:
-      return { loading: false, products: action.payload };
+      return { loading: false, brands: action.payload };
     case ALL_PRODUCT_BRAND_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:

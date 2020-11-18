@@ -75,7 +75,7 @@ export default function CatalogScreen(props) {
                     </div>
                     <div className="catalog_body">
                         <div className="catalog_filter">
-                            <Sidebar />
+                            <Sidebar products={products} />
                         </div>
                         <div className="catalog_right">
                             {loading ? (

@@ -10,33 +10,30 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useDispatch, useSelector } from 'react-redux'
 import { findTopLessPrices, allBrands } from '../../actions/productActions'
 
-export default function Sidebar() {
+export default function Sidebar({products}) {
 
     const [sliderValues, setSliderValues] = useState([0, 50000]);
-    const findPrices = useSelector((state) => state.findTopLessPrices);
-    const allBrandsList = useSelector((state) => state.allBrands);
-    const { products, loading } = allBrandsList;
-    const { prices } = findPrices;
-    const dispatch = useDispatch();
     const [brand, setBrand] = useState({});
-    useEffect(() => {
-        dispatch(findTopLessPrices());
-        dispatch(allBrands());
-        return () => {
-        };
-    }, []);
 
+    
     useEffect(() => {
+        const brands = [];
+        products.map((item) => {
+            brands.push(item.brand)
+        })
+        console.log(products)
+        const uniqueData = new Set(brands);
+        const uniqueBrands = [...uniqueData];
         const createBrandObj = () => {
             const brandObj = {}
-            products.map((product) => {
+            uniqueBrands.map((product) => {
                 brandObj[product] = false
             })
             return brandObj
         }
         setBrand(createBrandObj())
-    }, [loading])
-    console.log(brand)
+    }, [products])
+
     const [sizesClothes, setSizesClothes] = useState({
         S: false,
         M: false,
@@ -64,7 +61,7 @@ export default function Sidebar() {
         male: false,
         female: false
     });
-    
+    console.log(brand)
     return (
         <div className="sidebar">
             <Accordion>
