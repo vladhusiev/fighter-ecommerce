@@ -8,20 +8,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useDispatch, useSelector } from 'react-redux'
-import { findTopLessPrices, allBrands } from '../../actions/productActions'
+import { filterProductsBySize } from '../../actions/productActions'
 
 export default function Sidebar({products}) {
 
     const [sliderValues, setSliderValues] = useState([0, 50000]);
     const [brand, setBrand] = useState({});
-
+    const dispatch = useDispatch();
+    let filteredSize;
     
     useEffect(() => {
         const brands = [];
         products.map((item) => {
             brands.push(item.brand)
         })
-        console.log(products)
         const uniqueData = new Set(brands);
         const uniqueBrands = [...uniqueData];
         const createBrandObj = () => {
@@ -34,14 +34,12 @@ export default function Sidebar({products}) {
         setBrand(createBrandObj())
     }, [products])
 
-    const [sizesClothes, setSizesClothes] = useState({
+    const [sizes, setSizes] = useState({
         S: false,
         M: false,
         L: false,
         XL: false,
         XXL: false,
-    });
-    const [sizesShoes, setSizesShoes] = useState({
         30: false,
         34: false,
         36: false,
@@ -57,11 +55,19 @@ export default function Sidebar({products}) {
         46: false,
         47: false
     });
+
+    useEffect(() => {
+        Object.entries(sizes).map(([key, value]) => {
+            if (value) {
+                filteredSize = key
+            }
+        })
+    }, [sizes])
+
     const [gender, setGender] = useState({
         male: false,
         female: false
     });
-    console.log(brand)
     return (
         <div className="sidebar">
             <Accordion>
@@ -119,26 +125,16 @@ export default function Sidebar({products}) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <FormGroup row>
-                        { Object.keys(sizesClothes).map((item) => (
+                        { Object.keys(sizes).map((item) => (
                             <FormControlLabel
                                 key={item}
-                                control={<Checkbox 
-                                checked={sizesClothes[item]} 
-                                onChange={ e => setSizesClothes({ ...sizesClothes, [e.target.name]: e.target.checked })} 
-                                name={item} />}
-                                label={item} 
-                            />
-                        )) }
-                    </FormGroup>
-                    <FormGroup row>
-                        { Object.keys(sizesShoes).map((item) => (
-                            <FormControlLabel
-                                key={item}
-                                control={<Checkbox 
-                                checked={sizesShoes[item]} 
-                                onChange={ e => setSizesShoes({ ...sizesShoes, [e.target.name]: e.target.checked })} 
-                                name={item} />}
-                                label={item} 
+                                control={<Checkbox
+                                    checked={sizes[item]} 
+                                    onChange={ e => setSizes({ ...sizes, [e.target.id]: e.target.checked })} 
+                                    name="sizes"
+                                    id={item}
+                                />}
+                                label={item}
                             />
                         )) }
                     </FormGroup>
@@ -188,6 +184,7 @@ export default function Sidebar({products}) {
                     )) }
                 </AccordionDetails>
             </Accordion>
+            <a className="main_btn" onClick={() => dispatch(filterProductsBySize(products, filteredSize))}>Показать</a>
         </div>
     )
 }

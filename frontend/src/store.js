@@ -53,7 +53,7 @@ const reducer = combineReducers({
   topProductList: topProductListReducer,
   discountProductList: discountProductListReducer,
   findTopLessPrices: findTopLessPricesReducer,
-  allBrands: allProductBrandListReducer
+  allBrands: allProductBrandListReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

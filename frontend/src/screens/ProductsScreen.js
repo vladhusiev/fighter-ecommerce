@@ -27,18 +27,18 @@ function ProductsScreen(props) {
   const [sizesArr, setSizesArr] = useState(
     {
       shoes: {
-        size36: 0,
-        size37: 0,
-        size38: 0,
-        size39: 0,
-        size40: 0,
-        size41: 0,
-        size42: 0,
-        size43: 0,
-        size44: 0,
-        size45: 0,
-        size46: 0,
-        size47: 0,
+        36: 0,
+        37: 0,
+        38: 0,
+        39: 0,
+        40: 0,
+        41: 0,
+        42: 0,
+        43: 0,
+        44: 0,
+        45: 0,
+        46: 0,
+        47: 0,
       },
       clothes: {
         XS: 0,
@@ -49,10 +49,10 @@ function ProductsScreen(props) {
         XXL: 0
       },
       gloves: {
-        oz12: 0,
-        oz14: 0,
-        oz16: 0,
-        oz18: 0
+        12: 0,
+        14: 0,
+        16: 0,
+        18: 0
       },
       pants: {
         size30: 0,
