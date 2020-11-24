@@ -44,8 +44,9 @@ router.post("/", isAuth, async (req, res) => {
     totalPrice: req.body.totalPrice,
   });
   
+  console.log(newOrder);
   const newOrderCreated = await newOrder.save();
-  return res.status(201).send({message: "New Order Created", data: newOrderCreated});
+  res.status(201).send({message: "New Order Created", data: newOrderCreated});
 });
 
 router.put("/:id/pay", isAuth, async (req, res) => {
