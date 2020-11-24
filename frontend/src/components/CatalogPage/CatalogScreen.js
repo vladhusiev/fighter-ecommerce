@@ -5,7 +5,6 @@ import { listProducts } from '../../actions/productActions';
 import './CatalogScreen.css'
 import Sidebar from '../Sidebar/Sidebar'
 import Pagination from './Pagination'
-import Loading from '../Loading/Loading'
 import SkeletonScreen from './SkeletonScreen'
 import { LazyLoadImage } from '@tjoskar/react-lazyload-img'
 import defaultImage from '../../images/default.jpg'

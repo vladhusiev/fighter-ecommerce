@@ -147,3 +147,12 @@ input::-webkit-inner-spin-button {
     overflow: hidden;
     margin-bottom: 10px;
 }
+
+a.main_btn {
+    width: 50%;
+    margin-top: 25px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}

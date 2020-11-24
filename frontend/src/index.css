@@ -66,6 +66,10 @@ img {
     background: #000;
 }
 
+.main_btn:active {
+    transform: translateY(3px);
+}
+
 .pagination {
     justify-content: center;
 }

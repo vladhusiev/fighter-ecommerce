@@ -8,20 +8,19 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useDispatch, useSelector } from 'react-redux'
-import { findTopLessPrices, allBrands } from '../../actions/productActions'
 
 export default function Sidebar({products}) {
 
     const [sliderValues, setSliderValues] = useState([0, 50000]);
     const [brand, setBrand] = useState({});
-
+    
+    
     
     useEffect(() => {
         const brands = [];
         products.map((item) => {
             brands.push(item.brand)
         })
-        console.log(products)
         const uniqueData = new Set(brands);
         const uniqueBrands = [...uniqueData];
         const createBrandObj = () => {
@@ -33,6 +32,10 @@ export default function Sidebar({products}) {
         }
         setBrand(createBrandObj())
     }, [products])
+
+    const handleFilter = () => {
+        console.log('404')
+    }
 
     const [sizesClothes, setSizesClothes] = useState({
         S: false,
@@ -61,7 +64,6 @@ export default function Sidebar({products}) {
         male: false,
         female: false
     });
-    console.log(brand)
     return (
         <div className="sidebar">
             <Accordion>
@@ -188,6 +190,7 @@ export default function Sidebar({products}) {
                     )) }
                 </AccordionDetails>
             </Accordion>
+            <a className="main_btn" onClick={handleFilter}>Фильтр</a>
         </div>
     )
 }
