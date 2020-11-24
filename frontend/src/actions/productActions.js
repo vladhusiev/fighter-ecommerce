@@ -25,9 +25,30 @@ import {
   FIND_TOP_LESS_PRICES_FAIL,
   ALL_PRODUCT_BRAND_LIST_REQUEST,
   ALL_PRODUCT_BRAND_LIST_SUCCESS,
-  ALL_PRODUCT_BRAND_LIST_FAIL
+  ALL_PRODUCT_BRAND_LIST_FAIL,
+  FILTER_PRODUCTS_BY_SIZE,
 } from '../constants/productConstants';
 import Axios from 'axios';
+
+const filterProductsBySize = (products, size) => (dispatch) => {
+  const filteredBySize = (arr) => {
+      for (let key in arr.sizes) {
+        for (let innerKey in Object.keys(arr.sizes[key])) {
+          if (Object.keys(arr.sizes[key])[innerKey] === size && Object.entries(arr.sizes[key])[innerKey][1] > 0) {
+            return arr
+          }
+        }
+      }
+  }
+  return dispatch({
+    type: FILTER_PRODUCTS_BY_SIZE,
+    payload: {
+      size: size,
+      items: size === '' ? products : products.filter(filteredBySize)
+    }
+  })
+}
+
 
 const listProducts = (
   category = '',
@@ -209,5 +230,6 @@ export {
   topProductList,
   discountProductList,
   findTopLessPrices,
-  allBrands
+  allBrands,
+  filterProductsBySize
 };

@@ -14,9 +14,10 @@ export default function CatalogScreen(props) {
     const [sortOrder, setSortOrder] = useState('');
     const category = props.match.params.id ? props.match.params.id : '';
     const productList = useSelector((state) => state.productList);
-    const { products, loading, error } = productList;
+    const { products, filteredProducts, loading, error } = productList;
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(6);
+    console.log(filteredProducts)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProducts(category));
@@ -36,7 +37,7 @@ export default function CatalogScreen(props) {
 
     const indexOfLastPost = currentPage * postsPerPage
     const indexOfFirstPost = indexOfLastPost - postsPerPage
-    const currentProducts = products.slice(indexOfFirstPost, indexOfLastPost)
+    const currentProducts = loading ? products.slice(indexOfFirstPost, indexOfLastPost) : filteredProducts.slice(indexOfFirstPost, indexOfLastPost) 
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     return (
@@ -74,7 +75,7 @@ export default function CatalogScreen(props) {
                     </div>
                     <div className="catalog_body">
                         <div className="catalog_filter">
-                            <Sidebar products={products} />
+                            <Sidebar products={products} filteredProducts={filteredProducts} />
                         </div>
                         <div className="catalog_right">
                             {loading ? (
@@ -112,7 +113,7 @@ export default function CatalogScreen(props) {
                                                     </div>
                                             ))}
                                         </div>
-                                        <Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} currentPage={currentPage} />
+                                        <Pagination postsPerPage={postsPerPage} totalPosts={filteredProducts.length} paginate={paginate} currentPage={currentPage} />
                                     </div>
                                 )}
                         </div>
