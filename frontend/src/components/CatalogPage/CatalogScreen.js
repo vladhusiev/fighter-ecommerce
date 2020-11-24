@@ -17,7 +17,6 @@ export default function CatalogScreen(props) {
     const { products, filteredProducts, loading, error } = productList;
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(6);
-    console.log(filteredProducts)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProducts(category));
