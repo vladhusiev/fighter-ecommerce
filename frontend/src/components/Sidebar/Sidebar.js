@@ -8,12 +8,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useDispatch, useSelector } from 'react-redux'
+import { filterProductsBySize } from '../../actions/productActions'
 
 export default function Sidebar({products}) {
 
     const [sliderValues, setSliderValues] = useState([0, 50000]);
     const [brand, setBrand] = useState({});
-    
+    let filteredSize;
+    const dispatch = useDispatch();
     
     
     useEffect(() => {
