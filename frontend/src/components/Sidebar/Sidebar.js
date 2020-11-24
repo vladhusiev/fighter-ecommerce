@@ -14,7 +14,7 @@ export default function Sidebar({products}) {
 
     const [sliderValues, setSliderValues] = useState([0, 50000]);
     const [brand, setBrand] = useState({});
-    let filteredSize;
+    let filteredSize = [];
     const dispatch = useDispatch();
     
     
@@ -60,7 +60,7 @@ export default function Sidebar({products}) {
     useEffect(() => {
         Object.entries(sizes).map(([key, value]) => {
             if (value) {
-                filteredSize = key
+                filteredSize.push(key)
             }
         })
     }, [sizes])

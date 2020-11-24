@@ -34,12 +34,15 @@ const filterProductsBySize = (products, size) => (dispatch) => {
   const filteredBySize = (arr) => {
       for (let key in arr.sizes) {
         for (let innerKey in Object.keys(arr.sizes[key])) {
-          if (Object.keys(arr.sizes[key])[innerKey] === size && Object.entries(arr.sizes[key])[innerKey][1] > 0) {
-            return arr
+          for (let i = 0; i < size.length; i++) {
+            if (Object.keys(arr.sizes[key])[innerKey] === size[i] && Object.entries(arr.sizes[key])[innerKey][1] > 0) {
+              return arr
+            }
           }
         }
       }
   }
+  console.log(products.filter(filteredBySize))
   return dispatch({
     type: FILTER_PRODUCTS_BY_SIZE,
     payload: {
