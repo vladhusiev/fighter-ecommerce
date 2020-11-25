@@ -1,6 +1,6 @@
 import express from 'express';
 import Order from '../models/orderModel';
-import { isAuth, isAdmin } from '../util';
+import { isAuth, isAdmin, isAuthOrAnonymous } from '../util';
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get("/mine", isAuth, async (req, res) => {
   res.send(orders);
 });
 
-router.get("/:id", isAuth, async (req, res) => {
+router.get("/:id", isAuthOrAnonymous, async (req, res) => {
   const order = await Order.findOne({ _id: req.params.id });
   if (order) {
     res.send(order);
@@ -32,10 +32,10 @@ router.delete("/:id", isAuth, isAdmin, async (req, res) => {
   }
 });
 
-router.post("/", isAuth, async (req, res) => {
+router.post("/", isAuthOrAnonymous, async (req, res) => {
   const newOrder = new Order({
     orderItems: req.body.orderItems,
-    user: req.user._id,
+    user: (req.user) ? req.user._id : null,
     shipping: req.body.shipping,
     payment: req.body.payment,
     itemsPrice: req.body.itemsPrice,
@@ -44,7 +44,6 @@ router.post("/", isAuth, async (req, res) => {
     totalPrice: req.body.totalPrice,
   });
   
-  console.log(newOrder);
   const newOrderCreated = await newOrder.save();
   res.status(201).send({message: "New Order Created", data: newOrderCreated});
 });

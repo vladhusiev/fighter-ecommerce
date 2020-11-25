@@ -8,9 +8,10 @@ const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
     const { userSignin: { userInfo } } = getState();
+    const userToken = (userInfo) ? userInfo.token : 'anonymous';
     const { data : { data: createOrder } } = await Axios.post("/api/orders", order, {
       headers:
-        { Authorization: 'Bearer ' + userInfo.token }
+        { Authorization: 'Bearer ' + userToken}
     });
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: createOrder});
   } catch (error) {
@@ -53,11 +54,10 @@ const detailsOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId });
     const { userSignin: { userInfo } } = getState();
+    const userToken = (userInfo) ? userInfo.token : 'anonymous';
     const { data } = await Axios.get("/api/orders/" + orderId, {
       headers:
-        { 
-          Authorization: 'Bearer ' + userInfo.token 
-        }
+        { Authorization: 'Bearer ' + userToken }
     });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })
   } catch (error) {

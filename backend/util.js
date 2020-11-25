@@ -41,4 +41,27 @@ const isAdmin = (req, res, next) => {
   return res.status(401).send({ message: 'Admin Token is not valid.' });
 };
 
-export { getToken, isAuth, isAdmin };
+
+const isAuthOrAnonymous = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (token) {
+    const onlyToken = token.slice(7, token.length);
+    jwt.verify(onlyToken, config.JWT_SECRET, (err, decode) => {
+      if (err) {
+        req.user = undefined;
+        next();
+        return;
+      }
+      req.user = decode;
+      next();
+      return;
+    });
+  } else {
+    req.user = undefined;
+    next();
+    return;
+  }
+};
+
+export { getToken, isAuth, isAdmin, isAuthOrAnonymous };
