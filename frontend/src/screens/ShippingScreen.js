@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveShipping } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
@@ -10,6 +10,15 @@ function ShippingScreen(props) {
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [country, setCountry] = useState('');
+
+  const userSignin = useSelector(state => state.userSignin);
+  const { userInfo } = userSignin;
+  useEffect(() => {
+    if (userInfo) {
+      setTelephone(userInfo.telephone);
+    }
+    return () => { };
+  }, [userInfo])
 
   const dispatch = useDispatch();
 
@@ -38,7 +47,7 @@ function ShippingScreen(props) {
             <label htmlFor="telephone">
               Telephone
           </label>
-            <input type="text" name="telephone" id="telephone" onChange={(e) => setTelephone(e.target.value)}>
+            <input value={telephone} type="text" name="telephone" id="telephone" onChange={(e) => setTelephone(e.target.value)}>
             </input>
           </li>
           <li>

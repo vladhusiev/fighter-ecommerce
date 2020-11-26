@@ -6,6 +6,7 @@ import { register } from '../actions/userActions';
 function RegisterScreen(props) {
 
   const [name, setName] = useState('');
+  const [telephone, setTelephone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [, setRePassword] = useState('');
@@ -25,7 +26,7 @@ function RegisterScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    dispatch(register(name, telephone, email, password));
   }
   return <div className="form">
     <form onSubmit={submitHandler} >
@@ -42,6 +43,13 @@ function RegisterScreen(props) {
             Name
           </label>
           <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
+          </input>
+        </li>
+        <li>
+          <label htmlFor="telephone">
+            Telephone
+          </label>
+          <input type="telephone" name="telephone" id="telephone" onChange={(e) => setTelephone(e.target.value)}>
           </input>
         </li>
         <li>
