@@ -6,6 +6,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 function ShippingScreen(props) {
 
   const [address, setAddress] = useState('');
+  const [telephone, setTelephone] = useState('');
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [country, setCountry] = useState('');
@@ -14,7 +15,7 @@ function ShippingScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShipping({ address, city, postalCode, country }));
+    dispatch(saveShipping({ address, telephone, city, postalCode, country }));
     props.history.push('payment');
   }
   return <div>
@@ -31,6 +32,13 @@ function ShippingScreen(props) {
               Address
           </label>
             <input type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)}>
+            </input>
+          </li>
+          <li>
+            <label htmlFor="telephone">
+              Telephone
+          </label>
+            <input type="text" name="telephone" id="telephone" onChange={(e) => setTelephone(e.target.value)}>
             </input>
           </li>
           <li>
