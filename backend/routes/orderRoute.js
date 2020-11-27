@@ -8,8 +8,9 @@ router.get("/", isAuth, async (req, res) => {
   const orders = await Order.find({}).populate('user');
   res.send(orders);
 });
+
 router.get("/mine", isAuth, async (req, res) => {
-  const orders = await Order.find({ user: req.user._id });
+  const orders = await Order.find({ $or: [ { user: req.user._id }, { "shipping.telephone": req.headers.telephone } ] });
   res.send(orders);
 });
 

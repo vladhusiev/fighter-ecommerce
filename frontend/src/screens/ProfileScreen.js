@@ -28,7 +28,6 @@ function ProfileScreen(props) {
   const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo);
       setName(userInfo.name);
       setTelephone(userInfo.telephone);
       setEmail(userInfo.email);
