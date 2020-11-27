@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function ProfileScreen(props) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [telephone, setTelephone] = useState('');
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
 
@@ -18,7 +19,7 @@ function ProfileScreen(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(update({ userId: userInfo._id, email, name, password }))
+    dispatch(update({ userId: userInfo._id, name, telephone, email, password }))
   }
   const userUpdate = useSelector(state => state.userUpdate);
   const { loading, success, error } = userUpdate;
@@ -27,9 +28,9 @@ function ProfileScreen(props) {
   const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo.name)
-      setEmail(userInfo.email);
       setName(userInfo.name);
+      setTelephone(userInfo.telephone);
+      setEmail(userInfo.email);
       setPassword(userInfo.password);
     }
     dispatch(listMyOrders());
@@ -54,14 +55,21 @@ function ProfileScreen(props) {
             <li>
               <label htmlFor="name">
                 Name
-          </label>
+              </label>
               <input value={name} type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
+              </input>
+            </li>
+            <li>
+              <label htmlFor="telephone">
+                Telephone
+              </label>
+              <input value={telephone} type="telephone" name="telephone" id="telephone" onChange={(e) => setTelephone(e.target.value)}>
               </input>
             </li>
             <li>
               <label htmlFor="email">
                 Email
-          </label>
+              </label>
               <input value={email} type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
               </input>
             </li>

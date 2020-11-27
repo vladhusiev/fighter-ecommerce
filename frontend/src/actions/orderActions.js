@@ -25,7 +25,10 @@ const listMyOrders = () => async (dispatch, getState) => {
     const { userSignin: { userInfo } } = getState();
     const { data } = await Axios.get("/api/orders/mine", {
       headers:
-        { Authorization: 'Bearer ' + userInfo.token }
+        { 
+          Authorization: 'Bearer ' + userInfo.token,
+          Telephone: userInfo.telephone
+        }
     });
     dispatch({ type: MY_ORDER_LIST_SUCCESS, payload: data })
   } catch (error) {

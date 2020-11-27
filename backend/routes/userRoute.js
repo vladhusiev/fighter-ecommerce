@@ -9,12 +9,14 @@ router.put('/:id', isAuth, async (req, res) => {
   const user = await User.findById(userId);
   if (user) {
     user.name = req.body.name || user.name;
+    user.telephone = req.body.telephone || user.telephone;
     user.email = req.body.email || user.email;
     user.password = req.body.password || user.password;
     const updatedUser = await user.save();
     res.send({
       _id: updatedUser.id,
       name: updatedUser.name,
+      telephone: updatedUser.telephone,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       token: getToken(updatedUser),
@@ -33,6 +35,7 @@ router.post('/signin', async (req, res) => {
     res.send({
       _id: signinUser.id,
       name: signinUser.name,
+      telephone: signinUser.telephone,
       email: signinUser.email,
       isAdmin: signinUser.isAdmin,
       token: getToken(signinUser),
@@ -45,6 +48,7 @@ router.post('/signin', async (req, res) => {
 router.post('/register', async (req, res) => {
   const user = new User({
     name: req.body.name,
+    telephone: req.body.telephone,
     email: req.body.email,
     password: req.body.password,
   });
@@ -53,6 +57,7 @@ router.post('/register', async (req, res) => {
     res.send({
       _id: newUser.id,
       name: newUser.name,
+      telephone: newUser.telephone,
       email: newUser.email,
       isAdmin: newUser.isAdmin,
       token: getToken(newUser),

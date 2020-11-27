@@ -6,12 +6,12 @@ import {
   USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL
 } from "../constants/userConstants";
 
-const update = ({ userId, name, email, password }) => async (dispatch, getState) => {
+const update = ({ userId, name, telephone, email, password }) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
-  dispatch({ type: USER_UPDATE_REQUEST, payload: { userId, name, email, password } });
+  dispatch({ type: USER_UPDATE_REQUEST, payload: { userId, name, telephone, email, password } });
   try {
     const { data } = await Axios.put("/api/users/" + userId,
-      { name, email, password }, {
+      { name, telephone, email, password }, {
       headers: {
         Authorization: 'Bearer ' + userInfo.token
       }
@@ -34,10 +34,10 @@ const signin = (email, password) => async (dispatch) => {
   }
 }
 
-const register = (name, email, password) => async (dispatch) => {
-  dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
+const register = (name, telephone, email, password) => async (dispatch) => {
+  dispatch({ type: USER_REGISTER_REQUEST, payload: { name, telephone, email, password } });
   try {
-    const { data } = await Axios.post("/api/users/register", { name, email, password });
+    const { data } = await Axios.post("/api/users/register", { name, telephone, email, password });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     Cookie.set('userInfo', JSON.stringify(data));
   } catch (error) {
