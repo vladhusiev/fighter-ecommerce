@@ -52,20 +52,26 @@ function OrderScreen(props) {
             </div>
           </div>
           <div>
+            <h3>Delivery</h3>
+            <div>
+              Delivery Method: {order.delivery.deliveryMethod}
+            </div>
+          </div>
+          <div>
             <ul className="cart-list-container">
               <li>
                 <h3>
                   Shopping Cart
-          </h3>
+                </h3>
                 <div>
                   Price
-          </div>
+                </div>
               </li>
               {
                 order.orderItems.length === 0 ?
                   <div>
                     Cart is empty
-          </div>
+                  </div>
                   :
                   order.orderItems.map(item =>
                     <li key={item._id}>

@@ -20,7 +20,7 @@ function Header() {
                     <div className="header_upper_wrap">
                         <ul className="header_list">
                             <li className="header_item">
-                                <Link to="/delivery">
+                                <Link to="/deliveryinfo">
                                     <span className="header_upper_link">
                                         Оплата и доставка
                                     </span>
@@ -359,8 +359,10 @@ function Header() {
                         </div>
                         <div className="header_cart">
                             <div className="header_cart_wrap">
-                                <i className="fas fa-shopping-cart"></i>
-                                <span className="header_cart_count">3</span>
+                                <Link to="/cart">
+                                    <i className="fas fa-shopping-cart"></i>
+                                    <span className="header_cart_count">3</span>
+                                </Link>
                             </div>
                         </div>
                     </div>

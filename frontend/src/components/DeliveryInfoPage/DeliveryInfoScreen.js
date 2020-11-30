@@ -1,5 +1,5 @@
 import React from 'react'
-import './DeliveryScreen.css'
+import './DeliveryInfoScreen.css'
 
 export default function DeliveryScreen() {
     return (

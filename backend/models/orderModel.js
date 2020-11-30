@@ -11,6 +11,10 @@ const paymentSchema = {
   paymentMethod: { type: String, required: true }
 };
 
+const deliverySchema = {
+  deliveryMethod: { type: String, required: true }
+};
+
 const orderItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
   qty: { type: Number, required: true },
@@ -29,6 +33,7 @@ const orderSchema = new mongoose.Schema({
   orderItems: [orderItemSchema],
   shipping: shippingSchema,
   payment: paymentSchema,
+  delivery: deliverySchema,
   itemsPrice: { type: Number },
   taxPrice: { type: Number },
   shippingPrice: { type: Number },
