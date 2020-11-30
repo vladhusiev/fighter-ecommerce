@@ -25,7 +25,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li className="footer_menu_item">
-                                <Link to="/delivery">
+                                <Link to="/deliveryinfo">
                                     <span className="footer_menu_link">Оплата и доставка</span>
                                 </Link>
                             </li>

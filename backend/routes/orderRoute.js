@@ -39,6 +39,7 @@ router.post("/", isAuthOrAnonymous, async (req, res) => {
     user: (req.user) ? req.user._id : null,
     shipping: req.body.shipping,
     payment: req.body.payment,
+    delivery: req.body.delivery,
     itemsPrice: req.body.itemsPrice,
     taxPrice: req.body.taxPrice,
     shippingPrice: req.body.shippingPrice,
@@ -55,7 +56,7 @@ router.put("/:id/pay", isAuth, async (req, res) => {
     order.isPaid = true;
     order.paidAt = Date.now();
     order.payment = {
-      paymentMethod: 'paypal',
+      paymentMethod: 'paypal', // TODO
       paymentResult: {
         payerID: req.body.payerID,
         orderID: req.body.orderID,

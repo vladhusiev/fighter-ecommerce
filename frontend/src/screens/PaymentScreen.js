@@ -4,14 +4,14 @@ import { savePayment } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 function PaymentScreen(props) {
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('наличные');
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePayment({ paymentMethod }));
-    props.history.push('placeorder');
+    props.history.push('delivery');
   };
   return (
     <div>
@@ -20,7 +20,7 @@ function PaymentScreen(props) {
         <form onSubmit={submitHandler}>
           <ul className="form-container">
             <li>
-              <h2>Payment</h2>
+              <h2>Способ оплаты</h2>
             </li>
 
             <li>
@@ -28,11 +28,34 @@ function PaymentScreen(props) {
                 <input
                   type="radio"
                   name="paymentMethod"
-                  id="paymentMethod"
-                  value="paypal"
+                  id="cash"
+                  value="наличные"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  checked
+                ></input>
+                <label for="paymentMethod">Наличные</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="cardcash"
+                  value="безналичные"
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 ></input>
-                <label for="paymentMethod">Paypal</label>
+                <label for="paymentMethod">Безналичные</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="mailcash"
+                  value="наложенный платёж"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                ></input>
+                <label for="paymentMethod">Наложенный платёж</label>
               </div>
             </li>
 

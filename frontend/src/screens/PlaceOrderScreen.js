@@ -9,11 +9,13 @@ function PlaceOrderScreen(props) {
   const orderCreate = useSelector(state => state.orderCreate);
   const { success, order } = orderCreate;
 
-  const { cartItems, shipping, payment } = cart;
+  const { cartItems, shipping, payment, delivery } = cart;
   if (!shipping.address) {
     props.history.push("/shipping");
   } else if (!payment.paymentMethod) {
     props.history.push("/payment");
+  } else if (!delivery.deliveryMethod) {
+    props.history.push("/delivery");
   }
   const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
   const shippingPrice = itemsPrice > 100 ? 0 : 10;
@@ -25,7 +27,8 @@ function PlaceOrderScreen(props) {
   const placeOrderHandler = () => {
     // create an order
     dispatch(createOrder({
-      orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice,
+      orderItems: cartItems, shipping, payment, delivery, 
+      itemsPrice, shippingPrice,
       taxPrice, totalPrice
     }));
   }
@@ -37,7 +40,7 @@ function PlaceOrderScreen(props) {
   }, [success]);
 
   return <div>
-    <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
+    <CheckoutSteps step1 step2 step3 step4 step5></CheckoutSteps>
     <div className="placeorder">
       <div className="placeorder-info">
         <div>
@@ -53,6 +56,12 @@ function PlaceOrderScreen(props) {
           <h3>Payment</h3>
           <div>
             Payment Method: {cart.payment.paymentMethod}
+          </div>
+        </div>
+        <div>
+          <h3>Delivery</h3>
+          <div>
+            Delivery Method: {cart.delivery.deliveryMethod}
           </div>
         </div>
         <div>
