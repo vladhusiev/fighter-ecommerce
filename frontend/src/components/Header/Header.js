@@ -55,7 +55,7 @@ function Header() {
                             ) : (
                                 <div>
                                     <span className="header_log_link">
-                                        <Link to="/profile">
+                                        <Link to="/signin">
                                             Вход
                                         </Link>
                                     </span>
