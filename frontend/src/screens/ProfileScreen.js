@@ -13,6 +13,7 @@ function ProfileScreen(props) {
 
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
+
   const handleLogout = () => {
     dispatch(logout());
     props.history.push("/signin");
@@ -26,6 +27,7 @@ function ProfileScreen(props) {
 
   const myOrderList = useSelector(state => state.myOrderList);
   const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
+
   useEffect(() => {
     if (userInfo) {
       setName(userInfo.name);
@@ -78,14 +80,12 @@ function ProfileScreen(props) {
               <input value={password} type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
               </input>
             </li>
-
             <li>
               <button type="submit" className="button primary">Update</button>
             </li>
             <li>
               <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
             </li>
-
           </ul>
         </form>
       </div>
