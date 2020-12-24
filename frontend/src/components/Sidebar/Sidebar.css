@@ -156,3 +156,9 @@ a.main_btn {
     text-align: center;
     font-weight: bold;
 }
+
+span.filter-btn {
+    display: block;
+    margin-top: 45px;
+    cursor: pointer;
+}

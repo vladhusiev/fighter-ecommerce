@@ -15,12 +15,12 @@ function ProductsScreen(props) {
   const [oldPrice, setOldPrice] = useState('');
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
+  const [gender, setGender] = useState('');
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [description, setDescription] = useState('');
   const [vendorCode, setVendorCode] = useState('');
   const [clothesType, setClothesType] = useState('');
-  const [pantsType, setPantsType] = useState('');
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
   const { loading, products, error } = productList;
@@ -86,7 +86,6 @@ function ProductsScreen(props) {
     }
     dispatch(listProducts());
     return () => {
-      //
     };
   }, [successSave, successDelete]);
 
@@ -99,10 +98,10 @@ function ProductsScreen(props) {
     setDescription(product.description);
     setImage(product.image);
     setBrand(product.brand);
+    setGender(product.gender);
     setCategory(product.category);
     setCountInStock(product.countInStock);
     setVendorCode(product.vendorCode);
-    // setSizesArr(product.sizesArr);
   };
   const submitHandler = (e) => {
     e.preventDefault();
@@ -112,6 +111,7 @@ function ProductsScreen(props) {
         name,
         price,
         oldPrice,
+        gender,
         image,
         brand,
         category,
@@ -695,6 +695,29 @@ function ProductsScreen(props) {
                   id="brand"
                   onChange={(e) => setBrand(e.target.value)}
                 ></input>
+              </li>
+              <li>
+                <p>Gender</p>
+                <div>
+                  <label htmlFor="genderMale">Male</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    id="genderMale"
+                    checked={ gender == 'male' ? true : false }
+                    onChange={(e) => setGender(e.target.value)}
+                  ></input>
+                  <label htmlFor="genderFemale">Female</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    id="genderFemale"
+                    checked={ gender == 'female' ? true : false }
+                    onChange={(e) => setGender(e.target.value)}
+                  ></input>
+                </div>
               </li>
               <li>
                 <label htmlFor="countInStock">CountInStock</label>

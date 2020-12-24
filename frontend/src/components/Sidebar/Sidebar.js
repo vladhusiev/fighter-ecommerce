@@ -8,16 +8,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterProductsBySize } from '../../actions/productActions'
+import { filterProducts } from '../../actions/productActions'
 
-export default function Sidebar({products}) {
+export default function Sidebar({products, filteredProducts}) {
 
-    const [sliderValues, setSliderValues] = useState([0, 50000]);
+    const [sliderValues, setSliderValues] = useState([0, 10000]);
     const [brand, setBrand] = useState({});
     let filteredSize = [];
     const dispatch = useDispatch();
-    
-    
     useEffect(() => {
         const brands = [];
         products.map((item) => {
@@ -69,53 +67,9 @@ export default function Sidebar({products}) {
         male: false,
         female: false
     });
+
     return (
         <div className="sidebar">
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    Цена
-                </AccordionSummary>
-                <AccordionDetails className="sidebar-details sidebar-details--price">
-                    <div className="sidebar-inputs">
-                        <div className="sidebar-input-wrap">
-                            <span className="pre">от</span>
-                            <input type="number" value={sliderValues[0]}  onChange={ e => setSliderValues([parseInt(e.target.value), sliderValues[1]])} />
-                            <span>грн</span>
-                        </div>
-                        <div className="sidebar-input-wrap">
-                            <span className="pre">до</span>
-                            <input type="number" value={sliderValues[1]}  onChange={ e => setSliderValues([sliderValues[1], parseInt(e.target.value) ])}/>
-                            <span>грн</span>
-                        </div>
-                        
-                    </div>
-                    
-                    <Range 
-                        marks={
-                            {
-                                0: `0 грн`,
-                                50000: `50000 грн`
-                            }
-                        }
-                        min={0}
-                        max={50000}
-                        defaultValue={sliderValues}
-                        value={sliderValues}
-                        onChange={ e => setSliderValues(e) }
-                        tipFormatter={ value => `${value}` }
-                        tipProps={
-                            {
-                                placement: 'top',
-                                visible: true
-                            }
-                        }
-                    />
-                </AccordionDetails>
-            </Accordion>
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -139,6 +93,51 @@ export default function Sidebar({products}) {
                             />
                         )) }
                     </FormGroup>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    Цена
+                </AccordionSummary>
+                <AccordionDetails className="sidebar-details sidebar-details--price">
+                    <div className="sidebar-inputs">
+                        <div className="sidebar-input-wrap">
+                            <span className="pre">от</span>
+                            <input type="number" value={sliderValues[0]}  onChange={ e => setSliderValues([parseInt(e.target.value), sliderValues[1]])} />
+                            <span>грн</span>
+                        </div>
+                        <div className="sidebar-input-wrap">
+                            <span className="pre">до</span>
+                            <input type="number" value={sliderValues[1]}  onChange={ e => setSliderValues([sliderValues[0], parseInt(e.target.value) ])}/>
+                            <span>грн</span>
+                        </div>
+                        
+                    </div>
+                    <Range 
+                        marks={
+                            {
+                                0: `0 грн`,
+                                5000: `5000 грн`,
+                                10000: `10000 грн`
+                            }
+                        }
+                        min={0}
+                        max={10000}
+                        defaultValue={sliderValues}
+                        value={sliderValues}
+                        onChange={ e => setSliderValues(e) }
+                        tipFormatter={ value => `${value}` }
+                        tipProps={
+                            {
+                                placement: 'top',
+                                visible: true
+                            }
+                        }
+                    />
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -185,7 +184,7 @@ export default function Sidebar({products}) {
                     )) }
                 </AccordionDetails>
             </Accordion>
-            <a className="main_btn" onClick={() => dispatch(filterProductsBySize(products, filteredSize))}>Показать</a>
+            <a className="main_btn" onClick={() => dispatch(filterProducts(products, filteredProducts, filteredSize, sliderValues))}>Показать</a>
         </div>
     )
 }

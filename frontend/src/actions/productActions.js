@@ -26,31 +26,59 @@ import {
   ALL_PRODUCT_BRAND_LIST_REQUEST,
   ALL_PRODUCT_BRAND_LIST_SUCCESS,
   ALL_PRODUCT_BRAND_LIST_FAIL,
-  FILTER_PRODUCTS_BY_SIZE,
+  FILTER_PRODUCTS
 } from '../constants/productConstants';
 import Axios from 'axios';
 
-const filterProductsBySize = (products, size) => (dispatch) => {
-  const filteredBySize = (arr) => {
-      for (let key in arr.sizes) {
-        for (let innerKey in Object.keys(arr.sizes[key])) {
+const filterProducts = (products, filteredProducts, size = [], price) => (dispatch) => {
+  let filteredArr = [];
+  console.log(products)
+  const filterBySize = () => {
+    products.map((product) => {
+      for (let key in product.sizes) {
+        for (let innerKey in Object.keys(product.sizes[key])) {
           for (let i = 0; i < size.length; i++) {
-            if (Object.keys(arr.sizes[key])[innerKey] === size[i] && Object.entries(arr.sizes[key])[innerKey][1] > 0) {
-              return arr
+            if (Object.keys(product.sizes[key])[innerKey] === size[i] && Object.entries(product.sizes[key])[innerKey][1] > 0) {
+              filteredArr.push(product)
             }
           }
         }
       }
+    })
+    if (size.length < 1) {
+      filteredArr = [...products]
+    }
   }
-  console.log(products.filter(filteredBySize))
+  
+  
+  const filterByPrice = () => {
+    products.map((product) => {
+      if (product.price > price[0] && product.price < price[1]) {
+        filteredArr.push(product)
+      }
+    })
+    filteredArr = filteredArr.filter((item, index) => filteredArr.indexOf(item) !== index);
+  }
+
+  // const filtered = filteredArr.filter((product, index, self) =>
+  //   index === self.findIndex((t) => (
+  //     t._id == product._id
+  //   ))
+  // )
+
+  filterBySize();
+  // filterByPrice();
+  console.log(filteredArr)
   return dispatch({
-    type: FILTER_PRODUCTS_BY_SIZE,
+    type: FILTER_PRODUCTS,
     payload: {
       size: size,
-      items: size === '' ? products : products.filter(filteredBySize)
+      price: price,
+      items: filteredArr
     }
   })
 }
+
 
 
 const listProducts = (
@@ -234,5 +262,5 @@ export {
   discountProductList,
   findTopLessPrices,
   allBrands,
-  filterProductsBySize
+  filterProducts
 };

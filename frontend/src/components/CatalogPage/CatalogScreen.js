@@ -20,9 +20,7 @@ export default function CatalogScreen(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProducts(category));
-
         return () => {
-            //
         };
     }, [category]);
     const submitHandler = (e) => {
@@ -42,7 +40,6 @@ export default function CatalogScreen(props) {
     return (
         <>
             <section className="catalog">
-
                 <div className="container">
                     <div className="catalog_top">
                         <h2 className="catalog_title">

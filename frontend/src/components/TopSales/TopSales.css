@@ -72,11 +72,18 @@
 
 .goods_item {
     background: #fbf8f8;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
     width: 350px;
-    height: 500px;
+    height: 504px;
     outline: none;
     position: relative;
+    border-radius: 6px;
+    border: 1px dashed #ccc;
+    transition: 0.3s ease-in-out;
+}
+
+.goods_item:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-color: transparent;
 }
 
 .goods_item_upper {
@@ -105,6 +112,7 @@
     display: flex;
     flex-direction: column;
     height: 150px;
+    background: #fff;
 }
 
 .goods_item_name {

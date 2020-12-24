@@ -27,7 +27,7 @@ import {
   ALL_PRODUCT_BRAND_LIST_REQUEST,
   ALL_PRODUCT_BRAND_LIST_SUCCESS,
   ALL_PRODUCT_BRAND_LIST_FAIL,
-  FILTER_PRODUCTS_BY_SIZE,
+  FILTER_PRODUCTS
 } from '../constants/productConstants';
 
 
@@ -40,8 +40,8 @@ function productListReducer(state = { products: [], filteredProducts: [] }, acti
       return { loading: false, products: action.payload, filteredProducts: action.payload };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
-    case FILTER_PRODUCTS_BY_SIZE:
-      return { ...state, filteredProducts: action.payload.items, size: action.payload.size }
+    case FILTER_PRODUCTS:
+      return { ...state, filteredProducts: action.payload.items, size: action.payload.size, price: action.payload.price, gender: action.payload.gender };
     default:
       return state;
   }
