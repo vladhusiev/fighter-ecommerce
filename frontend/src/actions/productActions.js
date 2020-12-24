@@ -30,21 +30,22 @@ import {
 } from '../constants/productConstants';
 import Axios from 'axios';
 
-const filterProducts = (products, filteredProducts, size = [], price) => (dispatch) => {
+const filterProducts = (products, filteredProducts, price, size = []) => (dispatch) => {
   let filteredArr = [];
-  console.log(products)
   const filterBySize = () => {
-    products.map((product) => {
-      for (let key in product.sizes) {
-        for (let innerKey in Object.keys(product.sizes[key])) {
-          for (let i = 0; i < size.length; i++) {
-            if (Object.keys(product.sizes[key])[innerKey] === size[i] && Object.entries(product.sizes[key])[innerKey][1] > 0) {
-              filteredArr.push(product)
+    if (size.length > 0) {
+      products.map((product) => {
+        for (let key in product.sizes) {
+          for (let innerKey in Object.keys(product.sizes[key])) {
+            for (let i = 0; i < size.length; i++) {
+              if (Object.keys(product.sizes[key])[innerKey] === size[i] && Object.entries(product.sizes[key])[innerKey][1] > 0) {
+                filteredArr.push(product)
+              }
             }
           }
         }
-      }
-    })
+      })
+    }
     if (size.length < 1) {
       filteredArr = [...products]
     }
@@ -57,7 +58,7 @@ const filterProducts = (products, filteredProducts, size = [], price) => (dispat
         filteredArr.push(product)
       }
     })
-    filteredArr = filteredArr.filter((item, index) => filteredArr.indexOf(item) !== index);
+    filteredArr = filteredArr.filter((a, i, aa) => aa.indexOf(a) === i && aa.lastIndexOf(a) !== i);
   }
 
   // const filtered = filteredArr.filter((product, index, self) =>
@@ -67,7 +68,8 @@ const filterProducts = (products, filteredProducts, size = [], price) => (dispat
   // )
 
   filterBySize();
-  // filterByPrice();
+  filterByPrice();
+  console.log(products)
   console.log(filteredArr)
   return dispatch({
     type: FILTER_PRODUCTS,

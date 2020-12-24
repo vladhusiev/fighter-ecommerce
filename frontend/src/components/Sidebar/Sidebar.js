@@ -13,8 +13,8 @@ import { filterProducts } from '../../actions/productActions'
 export default function Sidebar({products, filteredProducts}) {
 
     const [sliderValues, setSliderValues] = useState([0, 10000]);
+    const [filteredSize, setFilteredSize] = useState([]);
     const [brand, setBrand] = useState({});
-    let filteredSize = [];
     const dispatch = useDispatch();
     useEffect(() => {
         const brands = [];
@@ -56,13 +56,18 @@ export default function Sidebar({products, filteredProducts}) {
     });
 
     useEffect(() => {
-        Object.entries(sizes).map(([key, value]) => {
-            if (value) {
-                filteredSize.push(key)
+        Object.entries(sizes).map(([key, value], index) => {
+            if (value && !filteredSize.includes(key)) {
+                setFilteredSize(filteredSize => [...filteredSize, key])
             }
+            else if (!value && filteredSize.includes(key)) {
+                setFilteredSize(filteredSize => filteredSize.filter((item, i) => item !== key))
+            }
+            
         })
+        
     }, [sizes])
-
+    console.log(filteredSize)
     const [gender, setGender] = useState({
         male: false,
         female: false
@@ -184,7 +189,7 @@ export default function Sidebar({products, filteredProducts}) {
                     )) }
                 </AccordionDetails>
             </Accordion>
-            <a className="main_btn" onClick={() => dispatch(filterProducts(products, filteredProducts, filteredSize, sliderValues))}>Показать</a>
+            <a className="main_btn" onClick={() => dispatch(filterProducts(products, filteredProducts, sliderValues, filteredSize))}>Показать</a>
         </div>
     )
 }
