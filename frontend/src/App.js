@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -42,6 +42,9 @@ function App() {
                     <Route path="/deliveryinfo" component={DeliveryInfoScreen} />
                     <Route path="/contacts" component={ContactsScreen} />
                     <Route path="/home" component={HomeScreen} />
+                    <Route exact path="/">
+                        <Redirect to="/home" />
+                    </Route>
                 </div>
             </main>
             <Footer />

@@ -10,10 +10,11 @@ function SigninScreen(props) {
   const userSignin = useSelector(state => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+
   useEffect(() => {
     if (userInfo) {
-      props.history.push(redirect);
+      console.log("token is ", userInfo.token);
+      props.history.push("/profile");
     }
     return () => {
       //
@@ -23,7 +24,6 @@ function SigninScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
-
   }
   return <div className="form">
     <form onSubmit={submitHandler} >
@@ -54,7 +54,7 @@ function SigninScreen(props) {
           New to amazona?
         </li>
         <li>
-          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+          <Link to="register" className="button secondary text-center" >Create your amazona account</Link>
         </li>
       </ul>
     </form>
